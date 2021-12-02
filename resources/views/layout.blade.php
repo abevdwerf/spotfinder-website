@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="html--scale-based">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,7 +56,7 @@
                 </a>
 
                 <ul class="navigation__list">
-                    <a class="navigation__list-link flex" href="./dashboard.html">
+                    <a href="{{ url("") }}" class="navigation__list-link flex">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path d="M20 7.093l-3-3v-2.093h3v5.093zm4 5.907h-3v10h-18v-10h-3l12-12 12 12zm-10 2h-4v6h4v-6z" />
                         </svg>
@@ -64,7 +64,7 @@
                         <li class="navigation__list-item">Home</li>
                     </a>
 
-                    <a class="navigation__list-link flex" href="./">
+                    <a href="{{ url("reserveren") }}" class="navigation__list-link flex">
                         <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd">
                             <path d="M14 0v10l2-1.518 2 1.518v-10h4v24h-17c-1.657 0-3-1.343-3-3v-18c0-1.657 1.343-3 3-3h9zm6 20h-14.505c-1.375 0-1.375 2 0 2h14.505v-2z" />
                         </svg>
@@ -72,7 +72,7 @@
                         <li class="navigation__list-item">Reserveren</li>
                     </a>
 
-                    <a class="navigation__list-link flex" href="./">
+                    <a href="{{ url("live-weergave") }}" class="navigation__list-link flex">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path d="M3.979 15.045c-1.468.978-2.168 2.263-2.231 3.955h-1.748c.069-2.346 1.1-4.186 3.153-5.497l.826 1.542zm15.36-14.045c-1.852 0-3.198.966-4.138 2.619l3.545 6.618c3.4.222 5.254-2.15 5.254-4.575 0-2.598-2.098-4.662-4.661-4.662zm-14.867 10.728l1.557 2.906 10.539-4.229-2.716-5.07-9.38 6.393zm4.765 3.773c.633.619.764 1.648.764 2.558v4.941h1.999v-5.097c0-1.776.662-3.024 1.735-4.207l-4.498 1.805z" />
                         </svg>
@@ -80,12 +80,12 @@
                         <li class="navigation__list-item">Live weergave</li>
                     </a>
 
-                    <a class="navigation__list-link flex" href="./">
+                    <a href="{{ url("reservatie-lijst") }}" class="navigation__list-link flex">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path d="M19 11h-14v-2h14v2zm0 2h-14v2h14v-2zm0 4h-14v2h14v-2zm3-11v16h-20v-16h20zm2-6h-24v24h24v-24z" />
                         </svg>
                         
-                        <li class="navigation__list-item">Reservatielijst</li>
+                        <li class="navigation__list-item">Reservatie lijst</li>
                     </a>
                 </ul>
             </nav>
@@ -126,15 +126,18 @@
     </body>
 
     <script>
+        // Hamburger menu interaction
         document.getElementsByClassName("navigation__hamburger-menu")[0].addEventListener("click", function () {
             if (document.body.classList.contains("body--side-nav--active")) document.body.classList.remove("body--side-nav--active");
             else document.body.classList.add("body--side-nav--active");
         });
 
+        // Navigation (mobile) close button
         document.getElementsByClassName("navigation__close")[0].addEventListener("click", function () {
             document.body.classList.remove("body--side-nav--active");
         });
 
+        // Finder-section (desktop) closing
         document.getElementsByClassName("finder__collapse")[0].addEventListener("click", function () {
             if (document.body.classList.contains("body--active-finder")) document.body.classList.remove("body--active-finder");
             else document.body.classList.add("body--active-finder");

@@ -1,0 +1,55 @@
+.rooms
+    flex-direction: column
+
+    &__wrapper
+        align-items: flex-start
+
+    // List view
+
+    &__item
+        padding: 3rem
+        flex-direction: column
+        box-shadow: $box-shadow-small
+        transition: background-color $transition
+
+        &:hover
+            background-color: $color-grey-light
+
+        &:not(:last-child)
+            margin-bottom: 1.5rem
+
+        &--selected
+            background-color: $color-white !important
+            border: solid .2rem $color-primary
+
+    &__floor
+        display: block
+        font-weight: 500
+        font-size: 1.5rem
+        color: $color-grey
+        margin-bottom: .5rem
+
+    // Detailed view
+
+    &__detailed
+        flex: 1
+        margin-left: 1.5rem
+        box-shadow: $box-shadow-small
+
+    &__info
+        justify-content: space-between
+
+        .h2
+            font-weight: bold
+            margin-bottom: .25rem
+
+        .btn
+            margin-bottom: .75rem
+
+        &-right
+            margin-left: 2.5rem
+
+    &__divider
+        margin: 3rem 0
+        border-top: none
+        border-color: $color-grey-light
