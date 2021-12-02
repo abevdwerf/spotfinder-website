@@ -1,0 +1,100 @@
+.login, .register
+    text-align: center
+
+    &__wrapper
+        width: 100%
+        padding: 3rem
+        box-sizing: content-box
+
+        @media screen and (min-width: $laptop)
+            padding: 6rem
+
+
+        @media screen and (min-width: $laptop-m)
+            padding: 6rem 8rem
+    
+    &__logo
+        width: 10rem
+        display: block
+        margin: 0 auto 2rem
+
+        @media screen and (min-width: $laptop)
+            width: 16rem
+            margin-bottom: 4rem
+
+    &__divider
+        z-index: 1
+        margin: 2.5rem 0
+        text-align: center
+        position: relative
+
+        &-text
+            padding: 0 2rem
+            font-weight: bold
+            color: $color-grey
+            background-color: $color-white
+
+        &-line
+            top: 50%
+            left: 0
+            right: 0
+            z-index: -1
+            height: .1rem
+            position: absolute
+            transform: translateY(-50%)
+            background-color: $color-grey
+
+    &__banner
+        flex: 1
+        display: none
+        padding: 6rem
+        text-align: center
+        align-self: stretch
+        flex-direction: column
+        background-image: linear-gradient(to right bottom, $color-primary 55%, $color-primary-dark)
+
+        p
+            font-weight: 500
+
+        .h1
+            font-size: 3.8rem
+            margin: 3.5rem 0rem
+
+        .h1, p
+            color: $color-white
+
+        @media screen and (min-width: $laptop)
+            display: flex
+
+    &__illustration
+        display: none
+
+        @media screen and (min-width: $laptop-m)
+            display: block
+
+    .login__wrapper
+        max-width: 34rem
+
+    .login__form
+        input
+            text-align: center
+
+    &.register
+        text-align: left
+
+    .register__wrapper
+        max-width: 68rem
+
+    .register__form
+        @media screen and (min-width: $tablet)
+            display: flex
+            flex-wrap: wrap
+            justify-content: space-between
+
+            .form__input-wrapper
+                width: calc(50% - 2rem)
+
+    .login__register, .register__login
+        margin: 0 auto
+        max-width: 20rem
+        text-align: center

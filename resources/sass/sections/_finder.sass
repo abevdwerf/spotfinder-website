@@ -1,0 +1,44 @@
+.finder
+    z-index: 2
+    max-width: 100vw
+    padding: 2.5rem
+    position: absolute
+    padding-bottom: 8rem
+    transform: translateX(-100%)
+    min-height: calc(100vh - 8rem)
+    background-color: $color-white
+    transition: transform $transition
+
+    &__collapse
+        top: 50%
+        position: absolute
+        padding: 1.5rem 1rem
+        left: calc(100%)
+        transform: translateY(-50%)
+        background-color: $color-white
+        border-radius: 0 $border-radius $border-radius 0
+
+        svg
+            width: 1.6rem
+            height: 1.6rem
+            display: block
+            fill: $color-primary
+            transition: transform $transition
+
+        @media screen and (min-width: $laptop-m)
+            display: none !important
+
+    @media screen and (min-width: $mobile-landscape)
+        width: 100vw
+
+    @media screen and (min-width: $tablet)
+        padding: 5rem
+        min-height: 100vh
+        width: calc(100vw - 32rem)
+
+    @media screen and (min-width: $laptop)
+        width: 42rem
+        display: block
+
+    @media screen and (min-width: $laptop-m)
+        transform: translateX(0%)

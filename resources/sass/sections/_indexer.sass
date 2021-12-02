@@ -1,0 +1,67 @@
+.indexer
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: 3
+    padding-top: 0
+    position: fixed
+    padding: 1rem 1.5rem
+    background-color: $color-white
+
+    &__nav
+        display: flex
+        padding: .75rem
+        position: relative
+        border-radius: $border-radius
+        background-color: $color-grey-light
+
+        &::after
+            left: 0
+            right: 0
+            bottom: 100%
+            content: ""
+            height: 5rem
+            position: absolute
+            pointer-events: none
+            background-image: linear-gradient(to bottom, transparent, $color-white)
+
+    &__item
+        padding: 1rem
+        box-shadow: none
+        color: $color-grey
+        flex-direction: column
+        justify-content: center
+        transition: color $transition, background-color $transition
+
+        &--odd
+            width: 5.5rem
+            height: 5.5rem
+            margin-left: auto
+            color: $color-white
+            background-color: $color-primary
+
+            svg
+                fill: $color-white !important
+
+        &:not(:last-child)
+            margin-right: .75rem
+
+        &:hover
+            color: $color-white
+            background-color: $color-blue
+
+            svg
+                fill: $color-white
+
+        svg
+            width: 1.6rem
+            height: 1.6rem
+            fill: $color-grey
+            transition: fill $transition
+
+        span
+            margin-top: .25rem
+            font-size: 1.3rem
+
+    @media screen and (min-width: $tablet)
+        display: none

@@ -1,0 +1,21 @@
+.intro
+    position: relative
+
+    &::before
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        z-index: -2
+        content: ""
+        position: absolute
+        background-color: $color-secundary
+        background-image: linear-gradient(to right bottom, $color-secundary, $color-secundary-dark)
+
+    &__image
+        width: 70rem
+        margin-right: 8rem
+
+    &__content
+        .btn
+            margin-top: 3.5rem

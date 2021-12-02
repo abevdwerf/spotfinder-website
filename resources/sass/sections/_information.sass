@@ -1,0 +1,61 @@
+.information
+    overflow: hidden
+    position: relative
+    
+    &::before
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        content: ""
+        z-index: -2
+        position: absolute
+        background-color: $color-white
+
+    .container
+        flex-direction: row-reverse
+
+    &__content
+        .h1, p
+            transition: color $transition
+
+        .btn
+            margin-top: 3.5rem
+
+    &__images
+        width: 54rem
+        position: relative
+        margin: 4rem 0 4rem 8rem
+
+        &::before
+            top: 50%
+            left: 50%
+            content: ""
+            z-index: -1
+            width: 41rem
+            height: 41rem
+            display: block
+            position: absolute
+            border-radius: 50%
+            transition: transform $transition-medium
+            transform: translate(-50%, -50%)
+            background-color: $color-primary
+            background-image: linear-gradient(to bottom, $color-primary, $color-primary-dark)
+        
+        &:hover
+            cursor: pointer
+
+            & + .information__content
+                .h1, p
+                    color: $color-white
+
+                .btn
+                    background-color: $color-blue
+            
+            &::before
+                transform: scale(9)
+
+        img
+            width: 46rem
+            box-shadow: $box-shadow
+            border-radius: $border-radius-big

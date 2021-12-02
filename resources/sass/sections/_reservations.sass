@@ -1,0 +1,49 @@
+.reservation
+    &s
+        flex-wrap: wrap
+        margin-bottom: -2rem
+        justify-content: space-between
+    
+    &__item
+        width: 100%
+        padding: 3rem
+        margin-bottom: 2rem
+        box-shadow: $box-shadow-small
+
+        .h4
+            margin-right: 2rem
+
+        @media screen and (min-width: $laptop-l)
+            width: calc(50% - 1rem)
+
+    &__location
+        display: block
+        font-weight: 500
+        font-size: 1.4rem
+        margin-bottom: .75rem
+        color: $color-grey-medium
+        transition: color $transition
+
+    &__type
+        padding: .75rem 1rem
+        border-radius: $border-radius
+        background-color: $color-grey-light
+
+        svg
+            width: 1.6rem
+            height: 1.6rem
+            fill: $color-grey
+            margin-right: 1rem
+
+        &-text
+            font-weight: 500
+            font-size: 1.3rem
+            color: $color-grey
+
+    &__time
+        color: $color-grey
+        margin-top: 1.25rem
+        
+        svg
+            fill: $color-grey
+            margin-right: 1rem
