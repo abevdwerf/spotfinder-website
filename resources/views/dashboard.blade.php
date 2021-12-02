@@ -8,7 +8,7 @@
             </svg>
         </a>
 
-        <h1 class="h1">Zoeken naar een werkplek</h1>
+        <h1 class="h1">Let's find a new place to work</h1>
 
         <form action="./" method="post" class="finder__form form">
             <div class="form__input-wrapper">
@@ -17,9 +17,9 @@
                         <path d="M10.833,2A5.829,5.829,0,0,0,5,7.833c0,4.375,5.833,10.833,5.833,10.833s5.833-6.458,5.833-10.833A5.829,5.829,0,0,0,10.833,2Zm0,7.917a2.083,2.083,0,1,1,2.083-2.083A2.084,2.084,0,0,1,10.833,9.917Z" transform="translate(-5 -2)" fill="#b1b1b1" />
                     </svg>
 
-                    Locatie
+                    Location
                 </label>
-                <input type="text" class="form__input" id="finder-location" placeholder="Selecteer een locatie">
+                <input type="text" class="form__input" id="finder-location" placeholder="Select a location">
             </div>
 
             <div class="form__input-wrapper">
@@ -28,8 +28,8 @@
                         <path d="M91.126,8.189a3.962,3.962,0,0,0,2.9-1.2,3.962,3.962,0,0,0,1.2-2.9,3.962,3.962,0,0,0-1.2-2.9,4.094,4.094,0,0,0-5.79,0,3.962,3.962,0,0,0-1.2,2.895,3.962,3.962,0,0,0,1.2,2.9A3.963,3.963,0,0,0,91.126,8.189Zm0,0" transform="translate(-84.142)" fill="#b1b1b1" />
                         <path d="M14.149,252.177a10.114,10.114,0,0,0-.138-1.074,8.464,8.464,0,0,0-.264-1.08,5.335,5.335,0,0,0-.444-1.007,3.8,3.8,0,0,0-.67-.872,2.952,2.952,0,0,0-.962-.6,3.324,3.324,0,0,0-1.228-.222,1.246,1.246,0,0,0-.665.282c-.2.13-.433.281-.693.447a3.971,3.971,0,0,1-.9.4,3.483,3.483,0,0,1-2.194,0,3.962,3.962,0,0,1-.9-.4c-.258-.165-.491-.315-.694-.447a1.245,1.245,0,0,0-.665-.282,3.319,3.319,0,0,0-1.228.222,2.949,2.949,0,0,0-.962.6,3.8,3.8,0,0,0-.669.872,5.345,5.345,0,0,0-.444,1.007,8.484,8.484,0,0,0-.264,1.08,10.078,10.078,0,0,0-.138,1.075c-.023.325-.034.663-.034,1a2.823,2.823,0,0,0,.838,2.136A3.018,3.018,0,0,0,3,256.1h8.186a3.017,3.017,0,0,0,2.16-.788,2.821,2.821,0,0,0,.839-2.136c0-.343-.012-.68-.034-1Zm0,0" transform="translate(0 -239.104)" fill="#b1b1b1" />
                     </svg>
-                    
-                    Aantal personen
+
+                    Number of people
                 </label>
                 <input style="display: none;" type="number" class="form__input" id="finder-people-amount">
 
@@ -47,7 +47,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16.254" viewBox="0 0 17 16.254">
                         <path d="M17.329,15.6,19.1,20.537l5.422.322c.752.054.913.752.376,1.127l-4.134,3.275,1.4,5.207c.215.752-.429,1.127-.966.752l-4.348-2.953L12.283,31.22c-.644.429-1.181-.107-.966-.7l1.449-5.046L8.525,22.04A.637.637,0,0,1,8.9,20.859l5.261-.161,1.933-5.046A.631.631,0,0,1,17.329,15.6Z" transform="translate(-8.214 -15.121)" fill="#b1b1b1" fill-rule="evenodd" />
                     </svg>
-                    
+
                     Room types
                 </div>
                 <div class="form__check-buttons">
@@ -63,7 +63,7 @@
                                 </g>
                             </svg>
 
-                            <span class="check-text">Bureau</span>
+                            <span class="check-text">Desk</span>
                         </div>
                     </div>
 
@@ -73,7 +73,7 @@
                                 <path d="M7.56,4.757,4.432,8H.844A.86.86,0,0,0,0,8.875v5.25A.86.86,0,0,0,.844,15H4.432L7.56,18.243A.841.841,0,0,0,9,17.625V5.376A.841.841,0,0,0,7.56,4.757Zm8.67,6.743,1.6-1.664a.6.6,0,0,0,0-.832l-.8-.832a.553.553,0,0,0-.8,0l-1.6,1.664-1.6-1.664a.553.553,0,0,0-.8,0l-.8.832a.6.6,0,0,0,0,.832l1.6,1.664-1.6,1.664a.6.6,0,0,0,0,.832l.8.832a.553.553,0,0,0,.8,0l1.6-1.664,1.6,1.664a.553.553,0,0,0,.8,0l.8-.832a.6.6,0,0,0,0-.832Z" transform="translate(0 -4.5)" />
                             </svg>
 
-                            <span class="check-text">Stilte kamer</span>
+                            <span class="check-text">silent room</span>
                         </div>
                     </div>
 
@@ -84,39 +84,41 @@
                                 <path d="M14.149,252.177a10.114,10.114,0,0,0-.138-1.074,8.464,8.464,0,0,0-.264-1.08,5.335,5.335,0,0,0-.444-1.007,3.8,3.8,0,0,0-.67-.872,2.952,2.952,0,0,0-.962-.6,3.324,3.324,0,0,0-1.228-.222,1.246,1.246,0,0,0-.665.282c-.2.13-.433.281-.693.447a3.971,3.971,0,0,1-.9.4,3.483,3.483,0,0,1-2.194,0,3.962,3.962,0,0,1-.9-.4c-.258-.165-.491-.315-.694-.447a1.245,1.245,0,0,0-.665-.282,3.319,3.319,0,0,0-1.228.222,2.949,2.949,0,0,0-.962.6,3.8,3.8,0,0,0-.669.872,5.345,5.345,0,0,0-.444,1.007,8.484,8.484,0,0,0-.264,1.08,10.078,10.078,0,0,0-.138,1.075c-.023.325-.034.663-.034,1a2.823,2.823,0,0,0,.838,2.136A3.018,3.018,0,0,0,3,256.1h8.186a3.017,3.017,0,0,0,2.16-.788,2.821,2.821,0,0,0,.839-2.136c0-.343-.012-.68-.034-1Zm0,0" transform="translate(0 -239.104)" />
                             </svg>
 
-                            <span class="check-text">Vergaderruimte</span>
+                            <span class="check-text">meeting room</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="form__input-wrapper form__input-wrapper--submit">
-                <input type="submit" class="btn btn--thirdiary" value="Werkplek zoeken">
+                <input type="submit" class="btn btn--thirdiary" value="Find work space">
             </div>
 
             <div class="login__divider">
                 <div class="login__divider-line"></div>
-                <span class="login__divider-text">Of</span>
+                <span class="login__divider-text">Or</span>
             </div>
 
             <div class="form__input-wrapper form__input-wrapper--submit">
-                <a href="{{ url('reserveren') }}" class="btn btn--fourthiary">Een plek reserveren</a>
+                <a href="{{ url('reservate') }}" class="btn btn--fourthiary">Make a reservation</a>
             </div>
         </form>
     </section>
 
     <main>
-        <h2 class="h1">Goedemorgen Ruben</h2>
+        @if(Auth::Check())
+            <h2 class="h1">Welcome @php echo Auth::User()->name @endphp</h2>
+        @endif
 
-        <h3 class="h3">Recente zoekopdrachten</h3>
+        <h3 class="h3">Search history</h3>
         <div class="history flex">
             <a href="#" class="box history__item">
                 <span class="history__location">Fontys R10, Rachelsmolen</span>
-                <h4 class="h4">Stilte kamer - 2 personen</h4>
+                <h4 class="h4">Silent room - 2 people</h4>
             </a>
         </div>
 
-        <h3 class="h3" style="margin-top: 3rem;">Uw reserveringen</h3>
+        <h3 class="h3" style="margin-top: 3rem;">Your reservations</h3>
         <div class="reservations flex">
             @for ($reservations = 0; $reservations < 3; $reservations++)
                 <a href="#" class="reservation__item box">
@@ -132,7 +134,7 @@
                                         <path d="M14.149,252.177a10.114,10.114,0,0,0-.138-1.074,8.464,8.464,0,0,0-.264-1.08,5.335,5.335,0,0,0-.444-1.007,3.8,3.8,0,0,0-.67-.872,2.952,2.952,0,0,0-.962-.6,3.324,3.324,0,0,0-1.228-.222,1.246,1.246,0,0,0-.665.282c-.2.13-.433.281-.693.447a3.971,3.971,0,0,1-.9.4,3.483,3.483,0,0,1-2.194,0,3.962,3.962,0,0,1-.9-.4c-.258-.165-.491-.315-.694-.447a1.245,1.245,0,0,0-.665-.282,3.319,3.319,0,0,0-1.228.222,2.949,2.949,0,0,0-.962.6,3.8,3.8,0,0,0-.669.872,5.345,5.345,0,0,0-.444,1.007,8.484,8.484,0,0,0-.264,1.08,10.078,10.078,0,0,0-.138,1.075c-.023.325-.034.663-.034,1a2.823,2.823,0,0,0,.838,2.136A3.018,3.018,0,0,0,3,256.1h8.186a3.017,3.017,0,0,0,2.16-.788,2.821,2.821,0,0,0,.839-2.136c0-.343-.012-.68-.034-1Zm0,0" transform="translate(0 -239.104)" />
                                     </svg>
 
-                                    <span class="reservation__type-text">Vergaderruimte</span>
+                                    <span class="reservation__type-text">meeting room</span>
                                 </div>
                             </div>
                         </div>

@@ -56,12 +56,12 @@
                         <li class="navigation__list-item">Home</li>
                     </a>
 
-                    <a href="{{ url("reserveren") }}" class="navigation__list-link @if ($page === "reserveren") navigation__list-link--active @endif flex">
+                    <a href="{{ url("reservate") }}" class="navigation__list-link @if ($page === "reservate") navigation__list-link--active @endif flex">
                         <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd">
                             <path d="M14 0v10l2-1.518 2 1.518v-10h4v24h-17c-1.657 0-3-1.343-3-3v-18c0-1.657 1.343-3 3-3h9zm6 20h-14.505c-1.375 0-1.375 2 0 2h14.505v-2z" />
                         </svg>
 
-                        <li class="navigation__list-item">Reserveren</li>
+                        <li class="navigation__list-item">Reservate</li>
                     </a>
 
                     {{-- <a href="{{ url("live-weergave") }}" class="navigation__list-link flex">
@@ -84,10 +84,10 @@
 
             <div class="navigation__buttons">
                 @if(!Auth::Check())
-                    <a href="{{ url('login') }}" class="btn">Inloggen</a>
-                    <a href="{{ url('register') }}" class="btn btn--secundary">Registreren</a>
+                    <a href="{{ url('login') }}" class="btn">Sign in</a>
+                    <a href="{{ url('register') }}" class="btn btn--secundary">Sign up</a>
                 @else
-                    <a href="{{ url('logout') }}" class="btn">Uitloggen</a>
+                    <a href="{{ url('logout') }}" class="btn">Sign out</a>
                 @endif
             </div>
         </section>
@@ -109,7 +109,7 @@
                         <path d="M14 0v10l2-1.518 2 1.518v-10h4v24h-17c-1.657 0-3-1.343-3-3v-18c0-1.657 1.343-3 3-3h9zm6 20h-14.505c-1.375 0-1.375 2 0 2h14.505v-2z" />
                     </svg>
 
-                    <span>Reserveren</span>
+                    <span>Reservate</span>
                 </a>
 
                 <a href="#" class="indexer__item indexer__item--odd box flex">

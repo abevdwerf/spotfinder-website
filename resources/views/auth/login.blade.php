@@ -7,18 +7,18 @@
                 <div class="login__wrapper">
                     <img class="login__logo" src="{{ url('img/logo.svg') }}" alt="SpotFinder logo">
 
-                    <h1 class="h2">Inloggen</h1>
+                    <h1 class="h2">Sign in</h1>
 
                     <form class="form login__form" action="{{ route('login') }}" method="post">
                         @csrf
                         <div class="form__input-wrapper">
-                            <label class="form__label" for="login-username">Gebruikersnaam</label>
-                            <input class="form__input" type="text" id="login-username" name="login_name" value="{{ old('name') ?: old('email') }}" placeholder="Gebruikersnaam">
+                            <label class="form__label" for="login-username">Username</label>
+                            <input class="form__input" type="text" id="login-username" name="login_name" value="{{ old('name') ?: old('email') }}" placeholder="Username">
                         </div>
 
                         <div class="form__input-wrapper">
-                            <label class="form__label" for="login-password">Wachtwoord</label>
-                            <input class="form__input" type="password" id="login-password" name="password" placeholder="Wachtwoord">
+                            <label class="form__label" for="login-password">Password</label>
+                            <input class="form__input" type="password" id="login-password" name="password" placeholder="Password">
 
                             @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -28,17 +28,17 @@
                         </div>
 
                         <div class="form__input-wrapper form__input-wrapper--submit">
-                            <input class="btn" type="submit" value="Inloggen">
+                            <input class="btn" type="submit" value="Sign in">
                         </div>
                     </form>
 
                     <div class="login__divider">
                         <div class="login__divider-line"></div>
-                        <span class="login__divider-text">Of</span>
+                        <span class="login__divider-text">Or</span>
                     </div>
 
                     <p class="login__register">
-                        Registreer <a href="{{ route('register') }}">hier</a> om een account aan te maken.
+                        Sign up <a href="{{ route('register') }}">here</a> to create an account.
                     </p>
                 </div>
 

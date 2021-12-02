@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
         return View::make("dashboard", ["page" => "dashboard"]);
     });
 
-    Route::get("reserveren", function () {
-        return View::make("reserveren", ["page" => "reserveren"]);
+    Route::get("reservate", function () {
+        return View::make("reservate", ["page" => "reservate"]);
     });
 
 ?>
