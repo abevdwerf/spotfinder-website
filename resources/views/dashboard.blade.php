@@ -8,7 +8,7 @@
             </svg>
         </a>
 
-        <h1 class="h1">Laten we een werkplek zoeken</h1>
+        <h1 class="h1">Zoeken naar een werkplek</h1>
 
         <form action="./" method="post" class="finder__form form">
             <div class="form__input-wrapper">

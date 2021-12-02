@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('base')
 
-        <title>Spotfinder</title>
-
-        <link rel="stylesheet" href="{{ url('css/styles.css') }}">
-    </head>
+@section('page')
     <body class="body body--side-nav body--active-finder">
         <div class="navigation__head flex">
             <svg class="navigation__head-logo" xmlns="http://www.w3.org/2000/svg" width="160" height="90" viewBox="0 0 160 90">
@@ -56,7 +48,7 @@
                 </a>
 
                 <ul class="navigation__list">
-                    <a href="{{ url("") }}" class="navigation__list-link flex">
+                    <a href="{{ url("") }}" class="navigation__list-link @if ($page === "dashboard") navigation__list-link--active @endif flex">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path d="M20 7.093l-3-3v-2.093h3v5.093zm4 5.907h-3v10h-18v-10h-3l12-12 12 12zm-10 2h-4v6h4v-6z" />
                         </svg>
@@ -64,7 +56,7 @@
                         <li class="navigation__list-item">Home</li>
                     </a>
 
-                    <a href="{{ url("reserveren") }}" class="navigation__list-link flex">
+                    <a href="{{ url("reserveren") }}" class="navigation__list-link @if ($page === "reserveren") navigation__list-link--active @endif flex">
                         <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd">
                             <path d="M14 0v10l2-1.518 2 1.518v-10h4v24h-17c-1.657 0-3-1.343-3-3v-18c0-1.657 1.343-3 3-3h9zm6 20h-14.505c-1.375 0-1.375 2 0 2h14.505v-2z" />
                         </svg>
@@ -91,8 +83,8 @@
             </nav>
 
             <div class="navigation__buttons">
-                <a href="./" class="btn">Inloggen</a>
-                <a href="./register.html" class="btn btn--secundary">Registreren</a>
+                <a href="{{ url("login") }}" class="btn">Inloggen</a>
+                <a href="{{ url("register") }}register.html" class="btn btn--secundary">Registreren</a>
             </div>
         </section>
 
@@ -125,6 +117,8 @@
         </div>
     </body>
 
+        @yield('page')
+
     <script>
         // Hamburger menu interaction
         document.getElementsByClassName("navigation__hamburger-menu")[0].addEventListener("click", function () {
@@ -143,4 +137,4 @@
             else document.body.classList.add("body--active-finder");
         });
     </script>
-</html>
+@endsection

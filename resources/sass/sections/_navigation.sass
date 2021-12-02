@@ -33,15 +33,18 @@
 
         &-link
             padding: 1.5rem 2.5rem
-            border-radius: $border-radius
             transition: background-color $transition
 
             &:not(:last-child)
                 @media screen and (min-width: $mobile-landscape)
                     margin-bottom: .5rem
 
-            &:hover
+            &--active
+                padding-left: 5rem
+                margin-left: -2.5rem
+                margin-right: -2.5rem
                 background-color: $color-primary
+                border-right: solid .35rem $color-white
 
             svg
                 width: 2.6rem
