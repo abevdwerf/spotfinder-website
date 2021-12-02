@@ -1,0 +1,106 @@
+*, *::before, *::after
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    font-family: "Montserrat", sans-serif
+    
+html
+    font-size: 62.5%
+
+    &.html--scale-based
+        @media screen and (min-width: $extra-large)
+            font-size: 0.55vw
+
+.body
+    font-size: 1.6rem
+    min-height: 100vh
+
+    &--side-nav
+        background-color: #EFF2FD
+
+        &--active
+            .navigation
+                transform: translateY(0%)
+
+        .navigation
+            display: flex
+
+        main
+            flex: 1
+            padding: 2.5rem
+            position: relative
+            padding-bottom: 8.5rem
+
+            &::before
+                top: 0
+                left: 0
+                right: 0
+                bottom: 0
+                opacity: 0
+                z-index: 1
+                content: ""
+                position: absolute
+                pointer-events: none
+                background-color: $color-black
+                transition: opacity $transition
+
+                @media screen and (min-width: $laptop-m)
+                    display: none
+
+            @media screen and (min-width: $tablet)
+                padding: 5rem
+
+            @media screen and (min-width: $laptop)
+                padding: 5rem 7.5rem 0
+
+            @media screen and (min-width: $laptop-m)
+                padding-left: 49.5rem
+
+        @media screen and (min-width: $tablet)
+            display: flex
+            margin-left: 32rem
+
+            .navigation__head
+                display: none
+
+    &.body--active-finder
+        main
+            &::before
+                opacity: .35
+                pointer-events: all
+
+        .finder
+            transform: translateX(0%)
+
+            .finder__collapse
+                display: none
+
+                svg
+                    transform: rotate(180deg)
+
+                @media screen and (min-width: $laptop)
+                    display: block
+
+    &--purple-back
+        background-color: $color-primary
+        background-image: linear-gradient(to right bottom, $color-primary 60%, $color-primary-dark)
+    
+    &__center-content
+        .box
+            z-index: 1
+            padding: 0
+            margin: 3rem
+            overflow: hidden
+            max-width: $laptop-l
+            
+            @media screen and (min-width: $laptop)
+                width: 100%
+                margin: 10rem
+                min-height: calc(100vh - 20rem)
+                border-radius: $border-radius-big
+
+        .lava-circle__wrapper
+            min-height: 100vh
+
+main section
+    padding: 12rem 0

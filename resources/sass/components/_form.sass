@@ -1,0 +1,138 @@
+.form
+    &__label
+        font-weight: 600
+        color: $color-grey
+        margin-bottom: 1rem
+        display: inline-block
+        
+        &.flex
+            display: flex
+            justify-content: flex-start
+
+            svg
+                display: block
+                margin-right: 1.5rem
+
+        @media screen and (min-width: $laptop)
+            font-size: 1.8rem
+
+            svg
+                width: 2rem
+                height: 2rem
+
+    &__input
+        width: 100%
+        border: none
+        font-weight: bold
+        font-size: 1.6rem
+        padding: 1.25rem 2rem
+        border-radius: $border-radius
+        background-color: $color-grey-light
+
+        &:focus
+            outline: none
+
+        &.flex
+            justify-content: flex-start
+
+        @media screen and (min-width: $laptop)
+            padding: 1.5rem 2.5rem
+
+        &-wrapper
+            &--submit
+                margin-top: 3rem
+
+                .btn
+                    width: 100%
+
+            &--full-width
+                width: 100% !important
+
+            &:not(:last-child)
+                margin-bottom: 2rem
+                   
+                @media screen and (min-width: $laptop)
+                    margin-bottom: 3rem
+
+    &__checkbox
+        width: 2.8rem
+        height: 2.8rem
+        position: relative
+        margin-right: 1.5rem
+        border-radius: $border-radius
+        border: solid .2rem $color-grey-medium
+
+        &::before
+            content: ""
+            width: 1.8rem
+            height: 1.8rem
+            display: block
+            background-size: cover
+            background-image: url(./../img/icons/checkmark.svg)
+
+        &-wrapper
+            position: relative
+            justify-content: flex-start
+
+            input, label
+                cursor: pointer
+
+            input
+                top: 0
+                left: 0
+                opacity: 0
+                z-index: 1
+                width: 2.8rem
+                height: 2.8rem
+                position: absolute
+                margin-right: 1rem
+
+                &:checked + .form__checkbox
+                    border-color: $color-primary
+                    background-color: $color-primary
+
+            &:not(:last-child)
+                margin-bottom: 2rem
+
+    &__check-button
+        min-width: 0
+        color: $color-grey
+        margin-right: 1rem
+        margin-bottom: 1rem
+        padding: 1.25rem 2.5rem
+        background-color: $color-grey-light
+
+        &:hover
+            background-color: $color-grey-medium !important
+
+        svg
+            width: 2rem
+            height: 2rem
+            fill: $color-grey
+
+        &s
+            margin-top: 1.5rem
+            margin-right: -1rem
+            margin-bottom: -1rem
+
+    &__custom-scroll
+        padding: 1.25rem
+        scrollbar-width: thin
+
+    &__selection-item
+        height: 5rem
+        padding: 1.5rem
+        min-width: 5rem
+        cursor: pointer
+        border-radius: $border-radius
+        transition: color $transition, background-color $transition
+
+        &:hover
+            color: $color-white
+            background-color: $color-primary
+
+        &:not(:last-child)
+            margin-right: 1rem
+
+        &--active
+            background-color: $color-white

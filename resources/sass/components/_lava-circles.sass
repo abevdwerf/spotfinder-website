@@ -1,0 +1,74 @@
+.lava-circle
+    bottom: 0
+    top: 150%
+    z-index: -1
+    width: 31vw
+    height: 31vw
+    margin: -15.5vw
+    min-width: 20rem
+    min-height: 20rem
+    position: absolute
+    border-radius: 50%
+    box-shadow: $box-shadow
+    background-color: $color-primary
+    transition: transform .5s ease-out, background-color .5s ease-out
+    background-image: linear-gradient(to right bottom, $color-primary, rgba($color-primary-dark, .25))
+
+    &:hover
+        cursor: grab
+        transform: scale(1.1)
+        animation-play-state: paused
+        background-color: $color-blue
+
+    &:nth-child(1)
+        left: 0%
+
+    &:nth-child(2)
+        left: 35%
+        animation-delay: 12s
+
+    &:nth-child(3)
+        right: 35%
+        animation-delay: 8s
+
+    &:nth-child(4)
+        right: 0% 
+        animation-delay: 4s
+
+    @media screen and (min-height: 500px)
+        animation: lavaCircle 15s infinite
+
+    &__wrapper
+        overflow: hidden
+        position: relative
+
+        &--no-background
+            &::before
+                content: none !important
+
+        &::before
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            content: ""
+            z-index: -1
+            position: absolute
+            background-image: linear-gradient(to right bottom, $color-secundary, $color-secundary-dark)
+
+    &s
+        &--low-opacity
+            .lava-circle
+                opacity: .12
+
+        &--yellow
+            .lava-circle
+                background-color: $color-secundary
+                background-image: linear-gradient(to right bottom, $color-secundary, rgba($color-secundary-dark, .25))
+
+@keyframes lavaCircle
+    0%
+        top: 150%
+        
+    100%
+        top: -50%

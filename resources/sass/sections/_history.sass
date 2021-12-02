@@ -1,0 +1,21 @@
+.history
+    justify-content: flex-start
+    
+    &__item
+        padding: 2rem 3rem
+        box-shadow: $box-shadow-small
+        transition: background-color $transition
+
+        &:hover
+            background-color: $color-grey-light
+
+            .history__location
+                color: $color-primary
+
+    &__location
+        display: block
+        font-weight: 500
+        font-size: 1.4rem
+        margin-bottom: .75rem
+        color: $color-grey-medium
+        transition: color $transition

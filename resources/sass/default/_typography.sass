@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap')
+
+h1, .h1, h2, .h2, h3, .h3
+    font-weight: 600
+    color: $color-black
+
+h1, .h1
+    font-size: 2.4rem
+    line-height: 1.4
+    margin-bottom: 2rem
+
+    @media screen and (min-width: $tablet)
+        font-size: 3rem
+        margin-bottom: 3rem
+
+h2, .h2
+    font-size: 2.2rem
+
+    @media screen and (min-width: $laptop)
+        font-size: 2.4rem
+
+h3, .h3
+    font-weight: 500
+    font-size: 1.6rem
+    margin-bottom: 1.5rem
+
+    @media screen and (min-width: $tablet)
+        font-size: 1.9rem
+
+h4, .h4
+    font-size: 1.5rem
+
+    @media screen and (min-width: $tablet)
+        font-size: 1.7rem
+
+a
+    color: inherit
+    cursor: pointer
+    text-decoration: none
+
+ul
+    list-style: none
+
+label, p
+    line-height: 1.9
+    color: $color-grey
+
+    a
+        font-weight: bold
+        color: $color-primary
+        transition: color $transition
+
+        &:hover
+            color: $color-blue
