@@ -84,7 +84,7 @@
 
             <div class="navigation__buttons">
                 <a href="{{ url("login") }}" class="btn">Inloggen</a>
-                <a href="{{ url("register") }}register.html" class="btn btn--secundary">Registreren</a>
+                <a href="{{ url("register") }}" class="btn btn--secundary">Registreren</a>
             </div>
         </section>
 
