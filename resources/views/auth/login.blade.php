@@ -13,7 +13,7 @@
                         @csrf
                         <div class="form__input-wrapper">
                             <label class="form__label" for="login-username">Gebruikersnaam</label>
-                            <input class="form__input" type="text" id="login-username" name="name" placeholder="Gebruikersnaam">
+                            <input class="form__input" type="text" id="login-username" name="login_name" value="{{ old('name') ?: old('email') }}" placeholder="Gebruikersnaam">
                         </div>
 
                         <div class="form__input-wrapper">
