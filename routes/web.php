@@ -1,6 +1,11 @@
 <?php
-    use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
+    Auth::Routes();
+
+    Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
     Route::get("/", function () {
         return View("landings-page");
@@ -14,11 +19,4 @@
         return View::make("reserveren", ["page" => "reserveren"]);
     });
 
-    Route::get("login", function () {
-        return View("login");
-    });
-
-    Route::get("register", function () {
-        return View("register");
-    });
 ?>

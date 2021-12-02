@@ -60,7 +60,7 @@
                         <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd">
                             <path d="M14 0v10l2-1.518 2 1.518v-10h4v24h-17c-1.657 0-3-1.343-3-3v-18c0-1.657 1.343-3 3-3h9zm6 20h-14.505c-1.375 0-1.375 2 0 2h14.505v-2z" />
                         </svg>
-                        
+
                         <li class="navigation__list-item">Reserveren</li>
                     </a>
 
@@ -68,7 +68,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path d="M3.979 15.045c-1.468.978-2.168 2.263-2.231 3.955h-1.748c.069-2.346 1.1-4.186 3.153-5.497l.826 1.542zm15.36-14.045c-1.852 0-3.198.966-4.138 2.619l3.545 6.618c3.4.222 5.254-2.15 5.254-4.575 0-2.598-2.098-4.662-4.661-4.662zm-14.867 10.728l1.557 2.906 10.539-4.229-2.716-5.07-9.38 6.393zm4.765 3.773c.633.619.764 1.648.764 2.558v4.941h1.999v-5.097c0-1.776.662-3.024 1.735-4.207l-4.498 1.805z" />
                         </svg>
-                        
+
                         <li class="navigation__list-item">Live weergave</li>
                     </a>
 
@@ -76,15 +76,19 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path d="M19 11h-14v-2h14v2zm0 2h-14v2h14v-2zm0 4h-14v2h14v-2zm3-11v16h-20v-16h20zm2-6h-24v24h24v-24z" />
                         </svg>
-                        
+
                         <li class="navigation__list-item">Reservatie lijst</li>
                     </a> --}}
                 </ul>
             </nav>
 
             <div class="navigation__buttons">
-                <a href="{{ url("login") }}" class="btn">Inloggen</a>
-                <a href="{{ url("register") }}" class="btn btn--secundary">Registreren</a>
+                @if(!Auth::Check())
+                    <a href="{{ url('login') }}" class="btn">Inloggen</a>
+                    <a href="{{ url('register') }}" class="btn btn--secundary">Registreren</a>
+                @else
+                    <a href="{{ url('logout') }}" class="btn">Uitloggen</a>
+                @endif
             </div>
         </section>
 
