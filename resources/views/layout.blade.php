@@ -48,7 +48,7 @@
                 </a>
 
                 <ul class="navigation__list">
-                    <a href="{{ url("") }}" class="navigation__list-link @if ($page === "dashboard") navigation__list-link--active @endif flex">
+                    <a href="{{ url("dashboard") }}" class="navigation__list-link @if ($page === "dashboard") navigation__list-link--active @endif flex">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path d="M20 7.093l-3-3v-2.093h3v5.093zm4 5.907h-3v10h-18v-10h-3l12-12 12 12zm-10 2h-4v6h4v-6z" />
                         </svg>
@@ -64,7 +64,7 @@
                         <li class="navigation__list-item">Reserveren</li>
                     </a>
 
-                    <a href="{{ url("live-weergave") }}" class="navigation__list-link flex">
+                    {{-- <a href="{{ url("live-weergave") }}" class="navigation__list-link flex">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path d="M3.979 15.045c-1.468.978-2.168 2.263-2.231 3.955h-1.748c.069-2.346 1.1-4.186 3.153-5.497l.826 1.542zm15.36-14.045c-1.852 0-3.198.966-4.138 2.619l3.545 6.618c3.4.222 5.254-2.15 5.254-4.575 0-2.598-2.098-4.662-4.661-4.662zm-14.867 10.728l1.557 2.906 10.539-4.229-2.716-5.07-9.38 6.393zm4.765 3.773c.633.619.764 1.648.764 2.558v4.941h1.999v-5.097c0-1.776.662-3.024 1.735-4.207l-4.498 1.805z" />
                         </svg>
@@ -78,7 +78,7 @@
                         </svg>
                         
                         <li class="navigation__list-item">Reservatie lijst</li>
-                    </a>
+                    </a> --}}
                 </ul>
             </nav>
 
