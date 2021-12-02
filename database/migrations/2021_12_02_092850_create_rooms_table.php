@@ -18,7 +18,7 @@ class CreateRoomsTable extends Migration
             $table->foreignId('floor_id')->constrained();
             $table->string('room_name');
             $table->integer('max_persons');
-            $table->integer('desk_type');
+            $table->integer('room_type');
             $table->boolean('reserved');
             $table->timestamps();
         });
