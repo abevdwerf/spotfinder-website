@@ -63,7 +63,7 @@
                             </div>
 
                             <div class="form__checkbox-wrapper flex">
-                                <input type="checkbox" id="register-service-details" name="service conditions" {{ old('service-conditions') ? 'checked' : ''}}>
+                                <input type="checkbox" id="register-service-details" name="service-conditions" {{ old('service-conditions') ? 'checked' : ''}}>
                                 <div class="form__checkbox flex"></div>
                                 <label for="register-service-details" class="form__checkbox-label">I agree with the <a href="../service-details.html" target="_blank">service conditions</a>.</label>
 
