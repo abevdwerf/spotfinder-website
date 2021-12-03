@@ -1,7 +1,6 @@
 @extends("odd-layout")
 
 @section("content")
-    <body class="body body__center-content">
         <div class="lava-circle__wrapper flex">
             <div class="login box flex">
                 <div class="login__wrapper">
@@ -55,4 +54,5 @@
                     </p>
                 </div>
             </div>
+        </div>
 @endsection
