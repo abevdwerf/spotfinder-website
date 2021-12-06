@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Route;
     });
 
     Route::get("dashboard", function () {
-        return View::make("dashboard", ["page" => "dashboard"]);
+        return View("dashboard", ["page" => "dashboard"]);
     });
 
     Route::get("reservate", function () {
-        return View::make("reservate", ["page" => "reservate"]);
+        return View("reservate", ["page" => "reservate"]);
     });
 
 ?>
