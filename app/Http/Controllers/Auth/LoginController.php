@@ -71,4 +71,9 @@ class LoginController extends Controller
         ]);
     }
 
+    public function showLoginForm()
+    {
+        $page = 'Login';
+        return view('auth.login', compact('page'));
+    }
 }

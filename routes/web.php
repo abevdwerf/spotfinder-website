@@ -8,15 +8,15 @@ use Illuminate\Support\Facades\Route;
     Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
     Route::get("/", function () {
-        return View("landings-page");
+        return View("landings-page", ["page" => "Landings page"]);
     });
 
     Route::get("dashboard", function () {
-        return View("dashboard", ["page" => "dashboard"]);
+        return View("dashboard", ["page" => "Dashboard"]);
     });
 
     Route::get("reservate", function () {
-        return View("reservate", ["page" => "reservate"]);
+        return View("reservate", ["page" => "Reservate"]);
     });
 
 ?>

@@ -11,6 +11,7 @@
 
             svg
                 display: block
+                fill: $color-grey
                 margin-right: 1.5rem
 
         @media screen and (min-width: $laptop)
@@ -31,6 +32,12 @@
 
         &:focus
             outline: none
+
+        &--date
+            cursor: pointer
+
+            &:not(:last-of-type)
+                margin-right: 2.5rem
 
         &.flex
             justify-content: flex-start
