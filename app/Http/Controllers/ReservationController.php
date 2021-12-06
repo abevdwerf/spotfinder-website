@@ -35,15 +35,7 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        $user_id = $request->input('user_id');
-        $room_id = $request->input('room_id');
-        $date_time = $request->input('date_time');
-
-        $reservation = new Reservation();
-        $reservation->user_id = $user_id;
-        $reservation->room_id = $room_id;
-        $reservation->date_time = $date_time;
-        $reservation->save();
+        Reservation::create($request->all());
     }
 
     /**
@@ -77,17 +69,9 @@ class ReservationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user_id = $request->input('user_id');
-        $room_id = $request->input('room_id');
-        $date_time = $request->input('date_time');
-
         $reservation = Reservation::find($id);
-        $reservation->user_id = $user_id;
-        $reservation->room_id = $room_id;
-        $reservation->date_time = $date_time;
-        $reservation->save();
+        $reservation->update($request->all());
     }
-
     /**
      * Remove the specified resource from storage.
      *

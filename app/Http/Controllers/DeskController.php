@@ -35,20 +35,7 @@ class DeskController extends Controller
      */
     public function store(Request $request)
     {
-        $room_id = $request->input('room_id');
-        $available_spaces = $request->input('available_spaces');
-        $wall_outlet = $request->input('wall_outlet');
-        $x = $request->input('x');
-        $y = $request->input('y');
-
-        $desk = new Desk();
-        $desk->room_id = $room_id;
-        $desk->available_spaces = $available_spaces;
-        $desk->wall_outlet = $wall_outlet;
-        $desk->x = $x;
-        $desk->y = $y;
-        $desk->save();
-
+        Desk::create($request->all());
     }
 
     /**
@@ -82,19 +69,8 @@ class DeskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $room_id = $request->input('room_id');
-        $available_spaces = $request->input('available_spaces');
-        $wall_outlet = $request->input('wall_outlet');
-        $x = $request->input('x');
-        $y = $request->input('y');
-
         $desk = Desk::find($id);
-        $desk->room_id = $room_id;
-        $desk->available_spaces = $available_spaces;
-        $desk->wall_outlet = $wall_outlet;
-        $desk->x = $x;
-        $desk->y = $y;
-        $desk->save();
+        $desk->update($request->all());
     }
 
     /**

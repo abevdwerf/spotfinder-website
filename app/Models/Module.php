@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Module extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'desk_id',
+        'module_name'
+    ];
 }
