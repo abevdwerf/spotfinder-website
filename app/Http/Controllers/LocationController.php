@@ -35,7 +35,11 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $location_name = $request->input('location_name');
+
+        $location = new Location();
+        $location->location_name = $location_name;
+        $location->save();
     }
 
     /**
@@ -69,7 +73,11 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $location_name = $request->input('location_name');
+
+        $location = Location::find($id);
+        $location->location_name = $location_name;
+        $location->save();
     }
 
     /**
@@ -80,6 +88,7 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $location = Location::find($id);
+        $location->delete();
     }
 }

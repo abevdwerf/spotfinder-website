@@ -35,7 +35,13 @@ class FloorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $location_id = $request->input('location_id');
+        $floor_name = $request->input('floor_name');
+
+        $floor = new Floor();
+        $floor->location_id = $location_id;
+        $floor->floor_name = $floor_name;
+        $floor->save();
     }
 
     /**
@@ -69,7 +75,13 @@ class FloorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $location_id = $request->input('location_id');
+        $floor_name = $request->input('floor_name');
+
+        $floor = Floor::find($id);
+        $floor->location_id = $location_id;
+        $floor->floor_name = $floor_name;
+        $floor->save();
     }
 
     /**
@@ -80,6 +92,7 @@ class FloorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $floor = Floor::find($id);
+        $floor->delete();
     }
 }

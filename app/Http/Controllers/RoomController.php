@@ -35,7 +35,17 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $floor_id = $request->input('floor_id');
+        $room_name = $request->input('room_name');
+        $max_persons = $request->input('max_persons');
+        $room_type = $request->input('room_type');
+
+        $room = new Room();
+        $room->floor_id = $floor_id;
+        $room->room_name = $room_name;
+        $room->max_persons = $max_persons;
+        $room->room_type = $room_type;
+        $room->save();
     }
 
     /**

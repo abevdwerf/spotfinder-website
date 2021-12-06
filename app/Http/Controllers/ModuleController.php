@@ -35,7 +35,13 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $desk_id = $request->input('desk_id');
+        $module_name = $request->input('module_name');
+
+        $module = new Module();
+        $module->desk_id = $desk_id;
+        $module->module_name = $module_name;
+        $module->save();
     }
 
     /**
@@ -69,7 +75,13 @@ class ModuleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $desk_id = $request->input('desk_id');
+        $module_name = $request->input('module_name');
+
+        $module = Module::find($id);
+        $module->desk_id = $desk_id;
+        $module->module_name = $module_name;
+        $module->save();
     }
 
     /**
@@ -80,6 +92,7 @@ class ModuleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $module = Module::find($id);
+        $module->delete();
     }
 }
