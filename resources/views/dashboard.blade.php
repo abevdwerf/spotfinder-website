@@ -20,6 +20,7 @@
                     Location
                 </label>
                 <input type="text" class="form__input" id="finder-location" placeholder="Select a location">
+                <input style="display: none;" type="number" class="form__input" id="finder-location-value" required>
 
                 <div class="form__dropdown" id="locations-dropdown">
                     @foreach($locations as $location)
@@ -37,7 +38,7 @@
 
                     Number of people
                 </label>
-                <input style="display: none;" type="number" class="form__input" id="finder-people-amount">
+                <input style="display: none;" type="number" class="form__input" id="finder-people-amount" required>
 
                 <div class="form__input form__custom-scroll flex" style="overflow: auto;">
                     @for ($options = 1; $options < 9; $options++)
@@ -173,7 +174,10 @@
             </div>
     
             <div class="dashboard__search-result">
-                
+                <h3 class="h3">Available workspaces</h3>
+                <div class="dashboard__search-inner">
+
+                </div>
             </div>
         </div>
     </main>
