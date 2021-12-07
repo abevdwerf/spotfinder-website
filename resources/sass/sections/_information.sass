@@ -13,7 +13,10 @@
         background-color: $color-white
 
     .container
-        flex-direction: row-reverse
+        flex-direction: column
+
+        @media screen and (min-width: $laptop)
+            flex-direction: row-reverse
 
     &__content
         .h1, p
@@ -23,17 +26,17 @@
             margin-top: 3.5rem
 
     &__images
-        width: 54rem
+        width: 23rem
         position: relative
-        margin: 4rem 0 4rem 8rem
+        margin: 4rem 0 7.5rem
 
         &::before
             top: 50%
             left: 50%
             content: ""
             z-index: -1
-            width: 41rem
-            height: 41rem
+            width: 20rem
+            height: 20rem
             display: block
             position: absolute
             border-radius: 50%
@@ -41,6 +44,10 @@
             transform: translate(-50%, -50%)
             background-color: $color-primary
             background-image: linear-gradient(to bottom, $color-primary, $color-primary-dark)
+
+            @media screen and (min-width: $laptop)
+                width: 41rem
+                height: 41rem
         
         &:hover
             cursor: pointer
@@ -55,7 +62,14 @@
             &::before
                 transform: scale(9)
 
+        @media screen and (min-width: $laptop)
+            width: 54rem
+            margin: 4rem 0 4rem 8rem
+
         img
-            width: 46rem
+            width: 23rem
             box-shadow: $box-shadow
             border-radius: $border-radius-big
+
+            @media screen and (min-width: $laptop)
+                width: 46rem

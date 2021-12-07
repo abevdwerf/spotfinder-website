@@ -1,4 +1,5 @@
 .intro
+    margin-top: 10rem
     position: relative
 
     &::before
@@ -13,9 +14,27 @@
         background-image: linear-gradient(to right bottom, $color-secundary, $color-secundary-dark)
 
     &__image
-        width: 70rem
-        margin-right: 8rem
+        width: 18rem
+
+        @media screen and (min-width: $laptop)
+            width: 70rem
+            margin-right: 8rem
 
     &__content
+        text-align: center
+        margin-top: 2rem
+
         .btn
             margin-top: 3.5rem
+
+        @media screen and (min-width: $laptop)
+            text-align: left
+
+    .box
+        flex-direction: column
+
+        @media screen and (min-width: $laptop)
+            flex-direction: row
+
+    @media screen and (min-width: $laptop)
+        margin-top: 15.4rem

@@ -1,0 +1,17 @@
+.dashboard
+    &__first-view, &__search-result
+        top: 0
+        position: absolute
+        transition: transform $transition-slow
+
+    &__first-view
+        transform: translateX(0vw)
+
+        &--hide
+            transform: translateX(-100vw)
+
+            & + .dashboard__search-result
+                transform: translateX(0vw)
+
+    &__search-result
+        transform: translateX(-100vw)

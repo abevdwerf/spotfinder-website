@@ -1,17 +1,62 @@
 .header
+    top: 0
+    left: 0
+    right: 0
+    z-index: 1
+    position: fixed
     overflow: hidden
-    padding: 4.5rem 0
-    box-shadow: $box-shadow
+    padding: 2.5rem 0
+    box-shadow: $box-shadow-big
     background-color: $color-primary
     background-image: linear-gradient(to right, $color-primary, $color-primary-dark)
 
+    .container
+        position: relative
+        justify-content: space-between
+
     &__logo
         width: auto
-        height: 8rem
+        height: 5rem
+        margin: 0 auto
         fill: $color-white
 
+        @media screen and (min-width: $laptop)
+            height: 7.5rem
+            margin: 0
+
+    &__list
+        display: none
+        font-size: 2rem
+        font-weight: 600
+        margin-right: auto
+        margin-left: 7.5rem
+        color: $color-white
+
+        @media screen and (min-width: $laptop)
+            display: block
+
+
+        &-item
+            display: inline-block
+
+            &.btn
+                min-width: 15rem
+
+            &:nth-child(2)
+                margin-left: 5rem
+
+            &:not(:last-child)
+                margin-right: 2.5rem
+
     &__illustration
-        right: 0
-        width: 18rem
-        bottom: -7.7rem
+        right: 8rem
+        width: 16rem
+        bottom: -6rem
+        display: none
         position: absolute
+
+        @media screen and (min-width: $laptop-m)
+            display: block
+
+    @media screen and (min-width: $laptop)
+        padding: 3.5rem 0

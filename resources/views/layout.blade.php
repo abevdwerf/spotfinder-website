@@ -48,7 +48,7 @@
                 </a>
 
                 <ul class="navigation__list">
-                    <a href="{{ url("dashboard") }}" class="navigation__list-link @if ($page === "dashboard") navigation__list-link--active @endif flex">
+                    <a href="{{ url("dashboard") }}" class="navigation__list-link @if ($page === "Dashboard") navigation__list-link--active @endif flex">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path d="M20 7.093l-3-3v-2.093h3v5.093zm4 5.907h-3v10h-18v-10h-3l12-12 12 12zm-10 2h-4v6h4v-6z" />
                         </svg>
@@ -141,4 +141,5 @@
             else document.body.classList.add("body--active-finder");
         });
     </script>
+    <script src="{{ url("js/main.js") }}"></script>
 @endsection

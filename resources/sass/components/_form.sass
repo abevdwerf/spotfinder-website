@@ -46,6 +46,8 @@
             padding: 1.5rem 2.5rem
 
         &-wrapper
+            position: relative
+
             &--submit
                 margin-top: 3rem
 
@@ -80,6 +82,7 @@
         &-wrapper
             position: relative
             justify-content: flex-start
+            transition: color $transition, background-color $transition
 
             input, label
                 cursor: pointer
@@ -101,45 +104,118 @@
             &:not(:last-child)
                 margin-bottom: 2rem
 
-    &__check-button
-        min-width: 0
-        color: $color-grey
-        margin-right: 1rem
-        margin-bottom: 1rem
-        padding: 1.25rem 2.5rem
-        background-color: $color-grey-light
+    &__dropdown
+        left: 0
+        right: 0
+        bottom: 0
+        top: 100%
+        z-index: 1
+        overflow: auto
+        cursor: pointer
+        padding: 0 1.5rem
+        min-height: 0rem
+        max-height: 25rem
+        position: absolute
+        border-radius: $border-radius
+        background-color: $color-white
+        transition: padding-top $transition, padding-bottom $transition, min-height $transition, box-shadow $transition
 
-        &:hover
-            background-color: $color-grey-medium !important
+        &--active
+            min-height: 20rem
+            padding-top: 1.5rem
+            padding-bottom: 1.5rem
+            box-shadow: $box-shadow
 
-        svg
-            width: 2rem
-            height: 2rem
-            fill: $color-grey
+            & + .form__input
+                color: $color-white
+                background-color: $color-grey
 
-        &s
-            margin-top: 1.5rem
-            margin-right: -1rem
-            margin-bottom: -1rem
+                &::placeholder
+                    color: $color-white
+
+        &-option
+            display: block
+            font-weight: 500
+            color: $color-grey
+            padding: 1rem 1.75rem
+            border-radius: $border-radius
+            transition: background-color $transition, color $transition
+
+            &--selected
+                color: $color-white !important
+                background-color: $color-primary !important
+
+            &:hover
+                color: $color-black
+                background-color: $color-grey-light
+
+    &__check
+        &-input
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            opacity: 0
+            width: 100%
+            height: 100%
+            cursor: pointer
+            position: absolute
+
+            &:hover + .form__check-button
+                color: $color-white !important
+                background-color: $color-grey-medium !important
+
+                svg
+                    fill: $color-white
+
+            &:checked + .form__check-button
+                color: $color-white !important
+                background-color: $color-primary !important
+
+                &:hover
+                    background-color: $color-primary !important
+
+                svg
+                    fill: $color-white
+
+        &-button
+            min-width: 0
+            color: $color-grey
+            margin-right: 1rem
+            margin-bottom: 1rem
+            padding: 1.25rem 2.5rem
+            background-color: $color-grey-light
+            transition: color $transition, background-color $transition
+
+            svg
+                width: 2rem
+                height: 2rem
+                fill: $color-grey
+                transition: fill $transition
+
+            &s
+                flex-wrap: wrap
+                margin-top: 1.5rem
+                margin-right: -1rem
+                margin-bottom: -1rem
+                justify-content: left
 
     &__custom-scroll
-        padding: 1.25rem
+        padding: 1rem
         scrollbar-width: thin
 
     &__selection-item
         height: 5rem
-        padding: 1.5rem
-        min-width: 5rem
         cursor: pointer
+        padding: 2rem
         border-radius: $border-radius
         transition: color $transition, background-color $transition
 
         &:hover
             color: $color-white
-            background-color: $color-primary
-
-        &:not(:last-child)
-            margin-right: 1rem
+            background-color: $color-grey-medium
+            background-color: rgba($color-grey-medium, .5)
 
         &--active
-            background-color: $color-white
+            color: $color-black !important
+            background-color: $color-white !important
