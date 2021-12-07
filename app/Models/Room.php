@@ -15,4 +15,21 @@ class Room extends Model
         'max_persons',
         'room_type'
     ];
+
+    public function roomType ($typeNumber)
+    {
+        switch ($typeNumber) {
+            case "0":
+                return "Desk";
+            break;
+
+            case "1":
+                return "Silent room";
+            break;
+
+            case "2":
+                return "Meeting room";
+            break;
+        }
+    }
 }

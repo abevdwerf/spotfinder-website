@@ -3,6 +3,7 @@ const { default: axios } = require("axios");
 
 // Finder variables
 const formLocation = document.getElementById("finder-location");
+const formLocationNumber = document.getElementById("finder-location-value");
 const locationDropdown = formLocation.parentElement.getElementsByClassName("form__dropdown")[0];
 const locationDropdownOptions = locationDropdown.getElementsByClassName("form__dropdown-option");
 
@@ -34,6 +35,7 @@ for (let index = 0; index < locationDropdownOptions.length; index++) {
 
         locationDropdown.classList.remove("form__dropdown--active");
         formLocation.value = e.target.innerHTML;
+        formLocationNumber.value = e.target.dataset.id;
         e.target.classList.add("form__dropdown-option--selected");
     });
 }
@@ -61,10 +63,10 @@ for (let index = 0; index < formTypes.length; index++) {
 finderSearch.addEventListener("click", function (e) {
     e.preventDefault();
 
-    axios.get("rooms?location=" + formLocation.value + "&numberOfPeople=" + document.getElementById("finder-people-amount").value + "&filterDeskPlace=" + formTypes[0].parentElement.getElementsByTagName("input")[0] + "&filterSilentRoom=" + formTypes[1].parentElement.getElementsByTagName("input")[0] + "&filterMeetingRoom=" + formTypes[2].parentElement.getElementsByTagName("input")[0])
+    axios.get("rooms?location=" + formLocationNumber.value + "&numberOfPeople=" + document.getElementById("finder-people-amount").value + "&filterDeskPlace=" + (formTypes[0].parentElement.getElementsByTagName("input")[0].checked ? 1 : 0) + "&filterSilentRoom=" + (formTypes[1].parentElement.getElementsByTagName("input")[0].checked ? 1 : 0) + "&filterMeetingRoom=" + (formTypes[2].parentElement.getElementsByTagName("input")[0].checked ? 1 : 0))
     .then(function (response) {
         if (!firstView.classList.contains("dashboard__first-view--hide")) firstView.classList.add("dashboard__first-view--hide");
-        document.getElementsByClassName("dashboard__search-result")[0].innerHTML = response.data;
+        document.getElementsByClassName("dashboard__search-inner")[0].innerHTML = response.data;
     })
     .catch(function (error) {
         console.error(error);
