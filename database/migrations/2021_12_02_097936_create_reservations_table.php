@@ -17,7 +17,8 @@ class CreateReservationsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('room_id')->constrained();
-            $table->dateTime('date_time');
+            $table->dateTime('reservation_start');
+            $table->dateTime('reservation_end');
             $table->timestamps();
         });
     }

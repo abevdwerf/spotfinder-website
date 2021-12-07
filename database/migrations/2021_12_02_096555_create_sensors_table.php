@@ -17,6 +17,7 @@ class CreateSensorsTable extends Migration
             $table->id();
             $table->foreignId('module_id')->constrained();
             $table->string('sensor_name');
+            $table->boolean('occupied');
             $table->timestamps();
         });
     }

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Sensor extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'module_id',
+        'sensor_name',
+        'occupied'
+    ];
 }
