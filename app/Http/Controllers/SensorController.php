@@ -25,7 +25,9 @@ class SensorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sensor = Sensor::create($request->all());
+
+        return $sensor->id;
     }
 
     /**
@@ -48,7 +50,8 @@ class SensorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sensor = Sensor::find($id);
+        $sensor->update($request->all());
     }
 
     /**
@@ -59,6 +62,7 @@ class SensorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sensor = Sensor::find($id);
+        $sensor->delete($id);
     }
 }

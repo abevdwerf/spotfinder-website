@@ -35,7 +35,8 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-        Module::create($request->all());
+        $module = Module::create($request->all());
+        return $module->id;
     }
 
     /**
