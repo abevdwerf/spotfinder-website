@@ -32,5 +32,6 @@ class CreateDesksTable extends Migration
     public function down()
     {
         Schema::dropIfExists('desks');
+        Schema::dropIfExists('modules');
     }
 }

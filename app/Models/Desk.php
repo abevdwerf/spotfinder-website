@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Desk extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'room_id',
+        'available_spaces',
+        'wall_outlet',
+        'x',
+        'y'
+    ];
 }
