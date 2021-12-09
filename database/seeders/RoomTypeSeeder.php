@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class RoomSeeder extends Seeder
+class RoomTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,27 +15,18 @@ class RoomSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('rooms')->insert([
-            'floor_id' => 1,
-            'room_name' => '0.10',
-            'max_persons' => 50,
-            'room_type_id' => 1,
+        DB::table('room_types')->insert([
+            'type_name' => 'Silent Room',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
-        DB::table('rooms')->insert([
-            'floor_id' => 1,
-            'room_name' => '0.60',
-            'max_persons' => 50,
-            'room_type_id' => 2,
+        DB::table('room_types')->insert([
+            'type_name' => 'Desk',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
-        DB::table('rooms')->insert([
-            'floor_id' => 1,
-            'room_name' => '0.05',
-            'max_persons' => 50,
-            'room_type_id' => 3,
+        DB::table('room_types')->insert([
+            'type_name' => 'Meeting Room',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);

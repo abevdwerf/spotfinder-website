@@ -15,7 +15,7 @@ class CreateDesksTable extends Migration
     {
         Schema::create('desks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('room_id')->constrained();
+            $table->foreignId('room_id')->constrained()->onDelete('cascade');
             $table->integer('available_spaces');
             $table->integer('wall_outlet');
             $table->integer('x');
@@ -32,6 +32,5 @@ class CreateDesksTable extends Migration
     public function down()
     {
         Schema::dropIfExists('desks');
-        Schema::dropIfExists('modules');
     }
 }

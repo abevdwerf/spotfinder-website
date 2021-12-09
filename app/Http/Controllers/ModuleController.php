@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 class ModuleController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth.apikey');
+    } 
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -35,7 +45,8 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-        Module::create($request->all());
+        $module = Module::create($request->all());
+        return $module->id;
     }
 
     /**

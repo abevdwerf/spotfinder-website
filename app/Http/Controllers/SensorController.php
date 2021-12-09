@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 class SensorController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth.apikey');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -25,7 +35,9 @@ class SensorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sensor = Sensor::create($request->all());
+
+        return $sensor->id;
     }
 
     /**
@@ -48,7 +60,8 @@ class SensorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sensor = Sensor::find($id);
+        $sensor->update($request->all());
     }
 
     /**
@@ -59,6 +72,7 @@ class SensorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sensor = Sensor::find($id);
+        $sensor->delete($id);
     }
 }

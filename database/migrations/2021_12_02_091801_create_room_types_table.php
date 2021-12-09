@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShapesTable extends Migration
+class CreateRoomTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateShapesTable extends Migration
      */
     public function up()
     {
-        Schema::create('shapes', function (Blueprint $table) {
+        Schema::create('room_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('room_id')->constrained();
-            $table->integer('x');
-            $table->integer('y');
-            $table->integer('width');
-            $table->integer('height');
+            $table->string('type_name');
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ class CreateShapesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shapes');
+        Schema::dropIfExists('room_types');
     }
 }

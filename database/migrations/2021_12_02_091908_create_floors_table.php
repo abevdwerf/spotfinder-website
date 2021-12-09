@@ -15,7 +15,7 @@ class CreateFloorsTable extends Migration
     {
         Schema::create('floors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('location_id')->constrained();
+            $table->foreignId('location_id')->constrained()->onDelete('cascade');
             $table->string('floor_name');
             $table->timestamps();
         });

@@ -15,7 +15,7 @@ class CreateModulesTable extends Migration
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('desk_id')->constrained();
+            $table->foreignId('desk_id')->constrained()->onDelete('cascade');
             $table->string('module_name');
             $table->timestamps();
         });
