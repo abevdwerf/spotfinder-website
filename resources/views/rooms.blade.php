@@ -24,30 +24,30 @@
         <ul>
             <li>
                 <b>Location:</b> <br/>
-                @if ($specification["location"]["location_name"] == "")
+                @if (!isset($location->location_name))
                     No location selected
                 @else
-                    {{ $specification["location"]["location_name"] }}
+                    {{ $location->location_name }}
                 @endif
                 <br/> <br/>
             </li>
             <li>
                 <b>Number of people:</b> <br/>
-                @if ($specification["numberOfPeople"] == 0)
+                @if ($numberOfPeople == 0)
                     No number of people selected
                 @else
-                    {{ $specification["numberOfPeople"] }}
+                    {{ $numberOfPeople }}
                 @endif
                 <br/> <br/>
             </li>
             <li>
                 <b>Roomtypes:</b> <br/>
-                @if ( $specification["filters"][1] === false && $specification["filters"][2] === false && $specification["filters"][3] === false )
+                @if ( $filters[1] === false && $filters[2] === false && $filters[3] === false )
                     No allowed room-types selected
                 @else
-                    {{ $specification["filters"][1] ? "Desks" : "" }} <br/>
-                    {{ $specification["filters"][2] ? "Silent room" : "" }} <br/>
-                    {{ $specification["filters"][3] ? "Meeting room" : "" }} <br/>
+                    {{ $filters[1] ? "Desks" : "" }} <br/>
+                    {{ $filters[2] ? "Silent room" : "" }} <br/>
+                    {{ $filters[3] ? "Meeting room" : "" }} <br/>
                 @endif
             </li>
         </ul>

@@ -64,8 +64,21 @@ finderSearch.addEventListener("click", function (e) {
     e.preventDefault();
 
     // Send ajax and make active search or print error in console
-    axios.get("rooms?location=" + formLocationNumber.value + "&numberOfPeople=" + document.getElementById("finder-people-amount").value + "&filterDeskPlace=" + (formTypes[0].parentElement.getElementsByTagName("input")[0].checked ? 1 : 0) + "&filterSilentRoom=" + (formTypes[1].parentElement.getElementsByTagName("input")[0].checked ? 1 : 0) + "&filterMeetingRoom=" + (formTypes[2].parentElement.getElementsByTagName("input")[0].checked ? 1 : 0))
-    .then(function (response) { activeSearch(response.data); }).catch(function (error) { console.error(error);});
+    axios.get(' /rooms' , {
+        params: {
+            location: formLocationNumber.value,
+            numberOfPeople: document.getElementById("finder-people-amount").value,
+            filterDeskPlace: (formTypes[0].parentElement.getElementsByTagName("input")[0].checked ? 1 : 0),
+            filterSilentRoom: (formTypes[1].parentElement.getElementsByTagName("input")[0].checked ? 2 : 0),
+            filterMeetingRoom: (formTypes[2].parentElement.getElementsByTagName("input")[0].checked ? 3 : 0)
+        }
+    })
+    .then(function (response) {
+        activeSearch(response.data);
+    })
+    .catch(function (error) {
+        console.error(error);
+    });
 });
 
 // Functions
@@ -77,7 +90,7 @@ function activeSearch (data) {
     // Append rooms
     document.getElementsByClassName("dashboard__search-inner")[0].innerHTML = data;
 
-    // Make all rooms appended rooms clickabke
+    // Make all rooms appended rooms clickable
     var roomItems = document.getElementsByClassName("rooms__item");
     for (let index = 0; index < roomItems.length; index++) roomItems[index].addEventListener("click", detailedRoom);
 }

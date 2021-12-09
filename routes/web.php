@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Route;
         echo "<script>window.close();</script>";
     });
 
-    Route::get("dashboard", [App\Http\Controllers\DashboardController::class, 'Initialization']);
-    Route::get("rooms", [App\Http\Controllers\DashboardController::class, 'GetRooms']);
+    Route::get("dashboard", [App\Http\Controllers\DashboardController::class, 'index']);
+
+    Route::get("rooms", [App\Http\Controllers\DashboardController::class, 'getRooms']);
     Route::get("room/{id}", [App\Http\Controllers\DashboardController::class, 'GetRoom']);
 
-    Route::get("reservate", function () {
-        return View("reservate", ["page" => "Reservate"]);
-    });
+    Route::get("reservate", [App\Http\Controllers\ReservationController::class, 'index']);
+    Route::get("reservate/{id}", [App\Http\Controllers\ReservationController::class, 'show']);
 ?>

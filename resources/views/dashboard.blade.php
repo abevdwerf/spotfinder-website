@@ -16,7 +16,7 @@
 
         <h1 class="h1">Let's find a new place to work</h1>
 
-        <form action="./" method="post" class="finder__form form">
+        <form action="{{url('dashboard')}}" method="post" class="finder__form form">
             <div class="form__input-wrapper">
                 <label class="form__label flex" for="finder-location">
                     <svg xmlns="http://www.w3.org/2000/svg" width="11.667" height="16.667" viewBox="0 0 11.667 16.667">
@@ -149,7 +149,7 @@
                 <h3 class="h3" style="margin-top: 3rem;">Your reservations</h3>
                 <div class="reservations flex">
                     @foreach ($reservations as $reservation)
-                        <a href="#" class="reservation__item box">
+                        <a href="{{url('reservate').'/'.$reservation->id}}" class="reservation__item box">
                             <span class="reservation__location">{{$reservation->room->floor->location->location_name}}</span>
                             <div class="flex" style="justify-content: flex-start;">
                                 <h4 class="h4">{{$reservation->room->room_name}}</h4>

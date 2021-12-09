@@ -3,60 +3,48 @@
 
     use App\Models\Reservation;
     use App\Models\Room;
-    use App\Models\Floor;
     use App\Models\Location;
     use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
     {
-        public function Initialization ()
+        public function index ()
         {
-            $reservations = "";
+            $reservations = null;
             $locations = Location::all();
+
+            //checking user signed in, if it's true then get all user reservations
             if(Auth::Check())
             {
-               $reservations = Reservation::where('user_id', Auth::User()->id)->get(); 
+               $reservations = Reservation::where('user_id', Auth::User()->id)->get();
             }
-            
-            return view("dashboard", ["page" => "Dashboard",
+
+            return view("dashboard", [
+                "page" => "Dashboard",
                 "locations" => $locations,
                 "reservations" => $reservations
             ]);
         }
 
-        public function GetRooms ()
+        public function getRooms ()
         {
-            $rooms = Room::all();
-            $floors = Floor::all();
-
-            $locationId =  intval($_GET["location"]);
-            $numberOfPeople = intval($_GET["numberOfPeople"]);
+            $locationId =  $_GET["location"];
+            $numberOfPeople = $_GET["numberOfPeople"];
             $filters = [
-                1 => boolval($_GET["filterDeskPlace"]),
-                2 => boolval($_GET["filterSilentRoom"]),
-                3 => boolval($_GET["filterMeetingRoom"])
+                $_GET["filterDeskPlace"],
+                $_GET["filterSilentRoom"],
+                $_GET["filterMeetingRoom"]
             ];
 
-            $specifiedRooms = array();
-
-            foreach ($rooms as $key => $room) {
-                $room->type = $room->roomType($room["room_type_id"]);
-
-                if ($filters[$room["room_type_id"]]) {
-                    foreach ($floors as $key => $floor) {
-                        if ($room["floor_id"] === $floor["id"]) if ($floor["location_id"] === $locationId) array_push($specifiedRooms, $room);
-                    }
-                }
-            }
+            //TODO filteren op numberofpeople (is nog niet gedaan omdat die data nog niet in de database staat)
+            $rooms = Room::join('floors', 'rooms.floor_id', '=', 'floors.id')->where('floors.location_Id', $locationId)->whereIn('room_type_id', $filters)->get();
 
             return view("rooms")->with(
                 array(
-                    'rooms' => $specifiedRooms,
-                    'specification' => array (
-                        'location' => Location::find($locationId),
-                        'numberOfPeople' => $numberOfPeople,
-                        'filters' => $filters
-                    )
+                    'rooms' => $rooms,
+                    'location' => Location::find($locationId),
+                    'numberOfPeople' => $numberOfPeople,
+                    'filters' => $filters
                 )
             );
         }

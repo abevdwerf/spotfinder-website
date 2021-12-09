@@ -18,4 +18,9 @@ class Floor extends Model
     {
         return $this->hasone(Location::class, 'id', 'location_id');
     }
+
+    public function rooms()
+    {
+        return $this->hasmany(Room::class, 'id', 'room_id');
+    }
 }
