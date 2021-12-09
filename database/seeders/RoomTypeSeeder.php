@@ -16,13 +16,19 @@ class RoomTypeSeeder extends Seeder
     public function run()
     {
         DB::table('room_types')->insert([
-            'type_name' => 'Silent Room'
+            'type_name' => 'Silent Room',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
         DB::table('room_types')->insert([
-            'type_name' => 'Desk'
+            'type_name' => 'Desk',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
         DB::table('room_types')->insert([
-            'type_name' => 'Meeting Room'
+            'type_name' => 'Meeting Room',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
     }
 }
