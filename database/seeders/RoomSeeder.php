@@ -19,8 +19,7 @@ class RoomSeeder extends Seeder
             'floor_id' => 1,
             'room_name' => '0.10',
             'max_persons' => 50,
-            'room_type' => 0,
-            'reserved' => 0,
+            'room_type_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -28,8 +27,7 @@ class RoomSeeder extends Seeder
             'floor_id' => 1,
             'room_name' => '0.60',
             'max_persons' => 50,
-            'room_type' => 0,
-            'reserved' => 0,
+            'room_type_id' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -37,8 +35,7 @@ class RoomSeeder extends Seeder
             'floor_id' => 1,
             'room_name' => '0.05',
             'max_persons' => 50,
-            'room_type' => 1,
-            'reserved' => 0,
+            'room_type_id' => 3,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);

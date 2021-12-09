@@ -15,11 +15,11 @@ class CreateRoomsTable extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('floor_id')->constrained();
+            $table->foreignId('floor_id')->constrained()->onDelete('cascade');
+            $table->foreignId('room_type_id')->constrained()->onDelete('cascade');
             $table->string('room_name');
             $table->integer('max_persons');
-            $table->integer('room_type');
-            $table->json('grid_location');
+            $table->json('grid_location')->nullable();
             $table->timestamps();
         });
     }
@@ -31,7 +31,6 @@ class CreateRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('desks');
         Schema::dropIfExists('rooms');
     }
 }
