@@ -1,60 +1,43 @@
 <?php
     namespace App\Http\Controllers;
 
+    use App\Models\Reservation;
     use App\Models\Room;
     use App\Models\Floor;
     use App\Models\Location;
+    use Illuminate\Support\Facades\Auth;
 
-    class DashboardController extends Controller
+class DashboardController extends Controller
     {
         public function Initialization ()
         {
-            $rooms = Room::all();
-            $floors = Floor::all();
             $locations = Location::all();
+            $reservations = Reservation::where('user_id', Auth::User()->id)->get();
 
-            // die(var_dump(Auth::User->id));
-            
-            $userReservations = array();
-            $specifiedLocations = array();
-
-            // Filter locations for locations with available workspaces
-            foreach ($rooms as $key => $room) {
-                foreach ($floors as $key => $floor) {
-                    if ($room["floor_id"] === $floor["id"]) {
-                        foreach ($locations as $key => $location) {
-                            if ($floor["location_id"] === $location["id"]) if (!in_array($location, $specifiedLocations)) array_push($specifiedLocations, $location);
-                        }
-                    }
-                }
-            }
-
-            return view("dashboard", ["page" => "Dashboard"])->with(
-                array(
-                    'reservations' => $userReservations,
-                    'locations' => $specifiedLocations
-                )
-            );
+            return view("dashboard", ["page" => "Dashboard",
+                "locations" => $locations,
+                "reservations" => $reservations
+            ]);
         }
 
         public function GetRooms ()
         {
             $rooms = Room::all();
             $floors = Floor::all();
-            
+
             $locationId =  intval($_GET["location"]);
             $numberOfPeople = intval($_GET["numberOfPeople"]);
             $filters = [
-                1 => boolval($_GET["filterDeskPlace"]), 
+                1 => boolval($_GET["filterDeskPlace"]),
                 2 => boolval($_GET["filterSilentRoom"]),
                 3 => boolval($_GET["filterMeetingRoom"])
             ];
-            
+
             $specifiedRooms = array();
 
             foreach ($rooms as $key => $room) {
                 $room->type = $room->roomType($room["room_type_id"]);
-               
+
                 if ($filters[$room["room_type_id"]]) {
                     foreach ($floors as $key => $floor) {
                         if ($room["floor_id"] === $floor["id"]) if ($floor["location_id"] === $locationId) array_push($specifiedRooms, $room);
@@ -75,7 +58,7 @@
         }
 
         public function getRoom () {
-            return view("room", ["gridTemplate" => 
+            return view("room", ["gridTemplate" =>
                 array(
                     array (
                         'x' => 1,

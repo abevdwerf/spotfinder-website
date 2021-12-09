@@ -13,4 +13,9 @@ class Floor extends Model
         'location_id',
         'floor_name'
     ];
+
+    public function location()
+    {
+        return $this->hasone(Location::class, 'id', 'location_id');
+    }
 }
