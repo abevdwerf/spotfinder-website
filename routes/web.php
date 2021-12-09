@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
     Route::get("dashboard", [App\Http\Controllers\DashboardController::class, 'Initialization']);
     Route::get("rooms", [App\Http\Controllers\DashboardController::class, 'GetRooms']);
+    Route::get("room/{id}", [App\Http\Controllers\DashboardController::class, 'GetRoom']);
 
     Route::get("reservate", function () {
         return View("reservate", ["page" => "Reservate"]);

@@ -1,6 +1,6 @@
 @if (count($rooms) > 0)
     @foreach($rooms as $room)
-        <a class="rooms__item rooms__item--extended box flex" href="{{ url('room/'.$room->id) }}" class="rooms">
+        <div class="rooms__item rooms__item--extended box flex" data-id="{{ $room->id }}">
             <div class="rooms__content">
                 <span class="rooms__floor">Ground floor</span>
                 <h4 class="h4">{{ $room->room_name }}</h4>
@@ -13,7 +13,7 @@
 
                 <span>Spots</span>
             </p>
-        </a>
+        </div>
     @endforeach
 @else
     <div class="rooms__item--error box">

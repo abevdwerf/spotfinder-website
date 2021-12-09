@@ -175,8 +175,10 @@
     
             <div class="dashboard__search-result">
                 <h3 class="h3">Available workspaces</h3>
-                <div class="dashboard__search-inner">
 
+                <div class="dashboard__content-wrap flex">
+                    <div class="dashboard__search-inner"></div>
+                    <div class="dashboard__search-detailed"></div>
                 </div>
             </div>
         </div>

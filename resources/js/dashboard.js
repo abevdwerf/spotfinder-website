@@ -63,12 +63,75 @@ for (let index = 0; index < formTypes.length; index++) {
 finderSearch.addEventListener("click", function (e) {
     e.preventDefault();
 
+    // Send ajax and make active search or print error in console
     axios.get("rooms?location=" + formLocationNumber.value + "&numberOfPeople=" + document.getElementById("finder-people-amount").value + "&filterDeskPlace=" + (formTypes[0].parentElement.getElementsByTagName("input")[0].checked ? 1 : 0) + "&filterSilentRoom=" + (formTypes[1].parentElement.getElementsByTagName("input")[0].checked ? 1 : 0) + "&filterMeetingRoom=" + (formTypes[2].parentElement.getElementsByTagName("input")[0].checked ? 1 : 0))
-    .then(function (response) {
-        if (!firstView.classList.contains("dashboard__first-view--hide")) firstView.classList.add("dashboard__first-view--hide");
-        document.getElementsByClassName("dashboard__search-inner")[0].innerHTML = response.data;
-    })
-    .catch(function (error) {
-        console.error(error);
-    });
-})
+    .then(function (response) { activeSearch(response.data); }).catch(function (error) { console.error(error);});
+});
+
+// Functions
+
+function activeSearch (data) {
+    // Remove first-view element
+    if (!firstView.classList.contains("dashboard__first-view--hide")) firstView.classList.add("dashboard__first-view--hide");
+
+    // Append rooms
+    document.getElementsByClassName("dashboard__search-inner")[0].innerHTML = data;
+
+    // Make all rooms appended rooms clickabke
+    var roomItems = document.getElementsByClassName("rooms__item");
+    for (let index = 0; index < roomItems.length; index++) roomItems[index].addEventListener("click", detailedRoom);
+}
+
+function detailedRoom (event) {
+    event.preventDefault();
+
+    const id = event.target.dataset.id;
+    axios.get("room/" + id).then(function (response) {
+        var searchDetailed = document.getElementsByClassName("dashboard__search-detailed")[0];
+        searchDetailed.innerHTML = response.data;
+        initCanvas(searchDetailed.getElementsByClassName("rooms__placing")[0], JSON.parse(searchDetailed.getElementsByClassName("rooms__placing")[0].dataset.gridtemplate));
+    }).catch(function (error) { console.error(error); });
+}
+
+// Initializing the grid
+function initCanvas (canvasObject, data) {
+    let ctx = canvasObject.getContext('2d');
+    ctx.fillStyle= "#a200ff";
+
+    // drawGrid(ctx);
+    drawSquares(ctx, data);
+}
+
+// Drawing grid with an SVG-image for faster implementation
+function drawGrid (context) {
+    const gridData = ' \
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"> \
+            <defs> \
+                <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse"> \
+                    <path d="M 10 0 L 0 0 0 10" fill="none" stroke="gray" stroke-width="0.5" /> \
+                </pattern> \
+            </defs> \
+            <rect width="100%" height="100%" fill="url(#smallGrid)" /> \
+        </svg> \
+    ';
+
+    var DOMURL = window.URL || window.webkitURL || window;
+    var img = new Image();
+    var svg = new Blob([gridData], {type: 'image/svg+xml;charset=utf-8'});
+    var url = DOMURL.createObjectURL(svg);
+    img.onload = function () {
+        context.drawImage(img, 0, 0);
+        DOMURL.revokeObjectURL(url);
+    }
+    img.src = url;
+}
+
+// Function that loops trough data to draw squares
+function drawSquares (ctx, data) {
+    data.forEach(obj => drawSquare(ctx, obj.x * 10, obj.y * 10));
+}
+
+// Function that draws squares
+function drawSquare (ctx, x, y) {
+    ctx.fillRect(x, y, 10, 10);
+}

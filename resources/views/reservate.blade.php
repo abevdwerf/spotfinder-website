@@ -149,7 +149,15 @@
 
                 <hr class="rooms__divider">
 
-                <img style="margin-left: 5%; width: 90%;" class="rooms__image" src="{{ url('img/room-preview.png') }}" alt="Room preview">
+                {{-- <img style="margin-left: 5%; width: 90%;" class="rooms__image" src="{{ url('img/room-preview.png') }}" alt="Room preview"> --}}
+
+                <canvas class="rooms__placing" width="700" height="350">
+                    <!--
+                        Aspect ratio of canvas always has to be: 2 to 1 (2:1)
+                        Those attributes have to be placed on the element iself (not by CSS)
+                        For more lines on the grid you can bump those numbers
+                    -->
+                </canvas>
             </div>
         </div>
     </main>

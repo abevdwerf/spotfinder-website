@@ -12,6 +12,8 @@
             $rooms = Room::all();
             $floors = Floor::all();
             $locations = Location::all();
+
+            // die(var_dump(Auth::User->id));
             
             $userReservations = array();
             $specifiedLocations = array();
@@ -27,12 +29,10 @@
                 }
             }
 
-            
-
             return view("dashboard", ["page" => "Dashboard"])->with(
                 array(
                     'reservations' => $userReservations,
-                    'locations' => $specifiedLocations,
+                    'locations' => $specifiedLocations
                 )
             );
         }
@@ -41,7 +41,7 @@
         {
             $rooms = Room::all();
             $floors = Floor::all();
-
+            
             $locationId =  intval($_GET["location"]);
             $numberOfPeople = intval($_GET["numberOfPeople"]);
             $filters = [
@@ -62,7 +62,7 @@
                 }
             }
 
-            return view("rooms", ["page" => "Dashboard"])->with(
+            return view("rooms")->with(
                 array(
                     'rooms' => $specifiedRooms,
                     'specification' => array (
@@ -72,6 +72,53 @@
                     )
                 )
             );
+        }
+
+        public function getRoom () {
+            return view("room", ["gridTemplate" => 
+                array(
+                    array (
+                        'x' => 1,
+                        'y' => 1
+                    ),
+                    array (
+                        'x' => 2,
+                        'y' => 1
+                    ),
+                    array (
+                        'x' => 3,
+                        'y' => 1
+                    ),
+                    array (
+                        'x' => 4,
+                        'y' => 1
+                    ),
+                    array (
+                        'x' => 5,
+                        'y' => 1
+                    ),
+                    array (
+                        'x' => 1,
+                        'y' => 2
+                    ),
+                    array (
+                        'x' => 2,
+                        'y' => 2
+                    ),
+                    array (
+                        'x' => 3,
+                        'y' => 2
+                    ),
+                    array (
+                        'x' => 4,
+                        'y' => 2
+                    ),
+                    array (
+                        'x' => 5,
+                        'y' => 2
+                    )
+                )
+            ]);
         }
     }
 ?>

@@ -141,5 +141,5 @@
             else document.body.classList.add("body--active-finder");
         });
     </script>
-    <script src="{{ url("js/main.js") }}"></script>
+    <script src="{{ url("js/".strtolower($page).".js") }}"></script>
 @endsection
