@@ -45,17 +45,17 @@
             $locationId =  intval($_GET["location"]);
             $numberOfPeople = intval($_GET["numberOfPeople"]);
             $filters = [
-                0 => boolval($_GET["filterDeskPlace"]), 
-                1 => boolval($_GET["filterSilentRoom"]),
-                2 => boolval($_GET["filterMeetingRoom"])
+                1 => boolval($_GET["filterDeskPlace"]), 
+                2 => boolval($_GET["filterSilentRoom"]),
+                3 => boolval($_GET["filterMeetingRoom"])
             ];
             
             $specifiedRooms = array();
 
             foreach ($rooms as $key => $room) {
-                $room->type = $room->roomType($room["room_type"]);
+                $room->type = $room->roomType($room["room_type_id"]);
                
-                if ($filters[$room["room_type"]]) {
+                if ($filters[$room["room_type_id"]]) {
                     foreach ($floors as $key => $floor) {
                         if ($room["floor_id"] === $floor["id"]) if ($floor["location_id"] === $locationId) array_push($specifiedRooms, $room);
                     }

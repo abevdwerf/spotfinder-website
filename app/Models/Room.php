@@ -19,15 +19,15 @@ class Room extends Model
     public function roomType ($typeNumber)
     {
         switch ($typeNumber) {
-            case "0":
+            case "1":
                 return "Desk";
             break;
 
-            case "1":
+            case "2":
                 return "Silent room";
             break;
 
-            case "2":
+            case "3":
                 return "Meeting room";
             break;
         }

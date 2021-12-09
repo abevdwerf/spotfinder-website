@@ -42,12 +42,12 @@
             </li>
             <li>
                 <b>Roomtypes:</b> <br/>
-                @if ( $specification["filters"][0] === false && $specification["filters"][1] === false && $specification["filters"][2] === false )
+                @if ( $specification["filters"][1] === false && $specification["filters"][2] === false && $specification["filters"][3] === false )
                     No allowed room-types selected
                 @else
-                    {{ $specification["filters"][0] ? "Desks" : "" }} <br/>
-                    {{ $specification["filters"][1] ? "Silent room" : "" }} <br/>
-                    {{ $specification["filters"][2] ? "Meeting room" : "" }} <br/>
+                    {{ $specification["filters"][1] ? "Desks" : "" }} <br/>
+                    {{ $specification["filters"][2] ? "Silent room" : "" }} <br/>
+                    {{ $specification["filters"][3] ? "Meeting room" : "" }} <br/>
                 @endif
             </li>
         </ul>
