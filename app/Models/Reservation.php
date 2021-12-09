@@ -18,7 +18,7 @@ class Reservation extends Model
 
     public function room()
     {
-        return $this->hasone(Room::class);
+        return $this->hasone(Room::class, 'id', 'room_id');
     }
 
     public function reservationStartAndBeginTime()
@@ -26,6 +26,6 @@ class Reservation extends Model
         $reservationStart = new DateTime($this->reservation_start);
         $reservationEnd = new DateTime($this->reservation_end);
 
-        return $reservationStart->format('H:i:s A') . " - " . $reservationEnd->format('H:i:s A');
+        return $reservationStart->format('H:i') . " - " . $reservationEnd->format('H:i');
     }
 }
