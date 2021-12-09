@@ -19,7 +19,7 @@ class CreateRoomsTable extends Migration
             $table->string('room_name');
             $table->integer('max_persons');
             $table->integer('room_type');
-            $table->boolean('reserved')->default(false);
+            $table->json('grid_location');
             $table->timestamps();
         });
     }
