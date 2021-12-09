@@ -11,9 +11,13 @@ class DashboardController extends Controller
     {
         public function Initialization ()
         {
+            $reservations = "";
             $locations = Location::all();
-            $reservations = Reservation::where('user_id', Auth::User()->id)->get();
-
+            if(Auth::Check())
+            {
+               $reservations = Reservation::where('user_id', Auth::User()->id)->get(); 
+            }
+            
             return view("dashboard", ["page" => "Dashboard",
                 "locations" => $locations,
                 "reservations" => $reservations

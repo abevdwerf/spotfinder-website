@@ -145,7 +145,7 @@
                 </a>
             </div>
 
-            @if(Auth::Check())
+            @if(Auth::Check() && count($reservations) > 0)
                 <h3 class="h3" style="margin-top: 3rem;">Your reservations</h3>
                 <div class="reservations flex">
                     @foreach ($reservations as $reservation)
