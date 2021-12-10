@@ -16,20 +16,13 @@ class Room extends Model
         'room_type_id'
     ];
 
-    public function roomType ($typeNumber)
+    public function roomType()
     {
-        switch ($typeNumber) {
-            case "0":
-                return "Desk";
-            break;
+        return $this->hasone(RoomType::class);
+    }
 
-            case "1":
-                return "Silent room";
-            break;
-
-            case "2":
-                return "Meeting room";
-            break;
-        }
+    public function floor()
+    {
+        return $this->hasone(Floor::class, 'id', 'floor_id');
     }
 }

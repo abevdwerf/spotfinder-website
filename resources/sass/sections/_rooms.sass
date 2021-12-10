@@ -2,11 +2,16 @@
     flex-direction: column
 
     &__wrapper
+        flex-direction: column
         align-items: flex-start
+
+        @media screen and (min-width: $tablet)
+            flex-direction: row
 
     // List view
 
     &__item
+        cursor: pointer
         padding: 3rem
         flex-direction: column
         box-shadow: $box-shadow-small
@@ -17,6 +22,9 @@
 
         &:not(:last-child)
             margin-bottom: 1.5rem
+
+        *
+            pointer-events: none
 
         &--extended
             flex-direction: row
@@ -68,8 +76,14 @@
 
     &__detailed
         flex: 1
-        margin-left: 1.5rem
+        max-width: 100%
+        overflow: hidden
+        margin-bottom: 1.5rem
         box-shadow: $box-shadow-small
+
+        @media screen and (min-width: $laptop)
+            margin-bottom: 0
+            margin-left: 1.5rem
 
     &__info
         justify-content: space-between
@@ -88,3 +102,10 @@
         margin: 3rem 0
         border-top: none
         border-color: $color-grey-light
+
+    &__placing
+        width: 32rem
+        height: 16rem
+        display: block
+        margin: 0 auto
+        // border: solid .1rem $color-grey-medium

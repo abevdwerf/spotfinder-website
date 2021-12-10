@@ -3,17 +3,14 @@
     right: 0
     bottom: 0
     z-index: 3
+    width: 100vw
     padding-top: 0
     position: fixed
-    padding: 1rem 1.5rem
     background-color: $color-white
 
-    &__nav
-        display: flex
-        padding: .75rem
+    &__pad
         position: relative
-        border-radius: $border-radius
-        background-color: $color-grey-light
+        padding: 1rem 1.5rem
 
         &::after
             left: 0
@@ -24,6 +21,13 @@
             position: absolute
             pointer-events: none
             background-image: linear-gradient(to bottom, transparent, $color-white)
+
+
+    &__nav
+        display: flex
+        padding: .75rem
+        border-radius: $border-radius
+        background-color: $color-grey-light
 
     &__item
         padding: 1rem

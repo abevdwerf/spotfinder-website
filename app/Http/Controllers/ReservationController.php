@@ -2,21 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
-    /**
-     * Instantiate a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth.apikey');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +15,12 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        return Reservation::all();
+        $locations = Location::all();
+
+        return view("reservate", [
+            "page" => "Reservate",
+            "locations" => $locations
+        ]);
     }
 
     /**
@@ -56,7 +52,13 @@ class ReservationController extends Controller
      */
     public function show($id)
     {
-        //
+        $reservation = Reservation::find($id);
+        $locations = Location::all();
+
+        return view("reservation", [
+            "page" => "Reservate",
+            "reservation" => $reservation
+        ]);
     }
 
     /**

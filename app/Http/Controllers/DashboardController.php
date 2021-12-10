@@ -1,77 +1,99 @@
 <?php
     namespace App\Http\Controllers;
 
+    use App\Models\Reservation;
     use App\Models\Room;
-    use App\Models\Floor;
     use App\Models\Location;
+    use Illuminate\Support\Facades\Auth;
 
-    class DashboardController extends Controller
+class DashboardController extends Controller
     {
-        public function Initialization ()
+        public function index ()
         {
-            $rooms = Room::all();
-            $floors = Floor::all();
+            $reservations = null;
             $locations = Location::all();
-            
-            $userReservations = array();
-            $specifiedLocations = array();
 
-            // Filter locations for locations with available workspaces
-            foreach ($rooms as $key => $room) {
-                foreach ($floors as $key => $floor) {
-                    if ($room["floor_id"] === $floor["id"]) {
-                        foreach ($locations as $key => $location) {
-                            if ($floor["location_id"] === $location["id"]) if (!in_array($location, $specifiedLocations)) array_push($specifiedLocations, $location);
-                        }
-                    }
-                }
+            //checking user signed in, if it's true then get all user reservations
+            if(Auth::Check())
+            {
+               $reservations = Reservation::where('user_id', Auth::User()->id)->get();
             }
 
-            
+            return view("dashboard", [
+                "page" => "Dashboard",
+                "locations" => $locations,
+                "reservations" => $reservations
+            ]);
+        }
 
-            return view("dashboard", ["page" => "Dashboard"])->with(
+        public function getRooms ()
+        {
+            $locationId =  $_GET["location"];
+            $numberOfPeople = $_GET["numberOfPeople"];
+            $filters = [
+                $_GET["filterDeskPlace"],
+                $_GET["filterSilentRoom"],
+                $_GET["filterMeetingRoom"]
+            ];
+
+            //TODO filteren op numberofpeople (is nog niet gedaan omdat die data nog niet in de database staat)
+            $rooms = Room::join('floors', 'rooms.floor_id', '=', 'floors.id')->where('floors.location_Id', $locationId)->whereIn('room_type_id', $filters)->get();
+
+            return view("rooms")->with(
                 array(
-                    'reservations' => $userReservations,
-                    'locations' => $specifiedLocations,
+                    'rooms' => $rooms,
+                    'location' => Location::find($locationId),
+                    'numberOfPeople' => $numberOfPeople,
+                    'filters' => $filters
                 )
             );
         }
 
-        public function GetRooms ()
-        {
-            $rooms = Room::all();
-            $floors = Floor::all();
-
-            $locationId =  intval($_GET["location"]);
-            $numberOfPeople = intval($_GET["numberOfPeople"]);
-            $filters = [
-                0 => boolval($_GET["filterDeskPlace"]), 
-                1 => boolval($_GET["filterSilentRoom"]),
-                2 => boolval($_GET["filterMeetingRoom"])
-            ];
-            
-            $specifiedRooms = array();
-
-            foreach ($rooms as $key => $room) {
-                $room->type = $room->roomType($room["room_type"]);
-               
-                if ($filters[$room["room_type"]]) {
-                    foreach ($floors as $key => $floor) {
-                        if ($room["floor_id"] === $floor["id"]) if ($floor["location_id"] === $locationId) array_push($specifiedRooms, $room);
-                    }
-                }
-            }
-
-            return view("rooms", ["page" => "Dashboard"])->with(
+        public function getRoom () {
+            return view("room", ["gridTemplate" =>
                 array(
-                    'rooms' => $specifiedRooms,
-                    'specification' => array (
-                        'location' => Location::find($locationId),
-                        'numberOfPeople' => $numberOfPeople,
-                        'filters' => $filters
+                    array (
+                        'x' => 1,
+                        'y' => 1
+                    ),
+                    array (
+                        'x' => 2,
+                        'y' => 1
+                    ),
+                    array (
+                        'x' => 3,
+                        'y' => 1
+                    ),
+                    array (
+                        'x' => 4,
+                        'y' => 1
+                    ),
+                    array (
+                        'x' => 5,
+                        'y' => 1
+                    ),
+                    array (
+                        'x' => 1,
+                        'y' => 2
+                    ),
+                    array (
+                        'x' => 2,
+                        'y' => 2
+                    ),
+                    array (
+                        'x' => 3,
+                        'y' => 2
+                    ),
+                    array (
+                        'x' => 4,
+                        'y' => 2
+                    ),
+                    array (
+                        'x' => 5,
+                        'y' => 2
                     )
                 )
-            );
+            ]);
         }
     }
 ?>
