@@ -13,7 +13,7 @@ class Room extends Model
         'floor_id',
         'room_name',
         'max_persons',
-        'room_type'
+        'room_type_id'
     ];
 
     public function roomType()
