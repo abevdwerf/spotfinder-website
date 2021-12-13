@@ -1,7 +1,7 @@
 <div class="rooms__detailed box">
     <div class="rooms__info flex">
         <div class="rooms__info-left">
-            <h2 class="h2">Oil 0.10 - Silent room</h2>
+            <h2 class="h2">OIL {{ $room[0]->room_name }} - Silent room</h2>
         </div>
     </div>
 

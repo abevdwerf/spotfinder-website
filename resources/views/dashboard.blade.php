@@ -137,12 +137,14 @@
                 <h2 class="h1">Welcome @php echo Auth::User()->name @endphp</h2>
             @endif
 
-            <h3 class="h3">Search history</h3>
-            <div class="history flex">
-                <a href="#" class="box history__item">
-                    <span class="history__location">Fontys R10, Rachelsmolen</span>
-                    <h4 class="h4">Silent room - 2 people</h4>
-                </a>
+            <div class="history__wrapper">
+                <h3 class="h3">Search history</h3>
+                <div class="history flex">
+                    <a href="#" style="display: none;" class="box history__item">
+                        <span class="history__location">Fontys R10, Rachelsmolen</span>
+                        <h4 class="h4">Silent room - 2 people</h4>
+                    </a>
+                </div>
             </div>
 
             @if(Auth::Check() && count($reservations) > 0)
@@ -185,7 +187,7 @@
 
             <div class="dashboard__content-wrap flex">
                 <div class="dashboard__search-inner"></div>
-                <div class="dashboard__search-detailed"></div>
+                <div class="dashboard__search-detailed" style="display: none;"></div>
             </div>
         </div>
     </main>

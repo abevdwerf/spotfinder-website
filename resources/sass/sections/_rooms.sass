@@ -11,10 +11,12 @@
     // List view
 
     &__item
+        width: 100%
         cursor: pointer
         padding: 3rem
         flex-direction: column
         box-shadow: $box-shadow-small
+        border: solid .2rem transparent
         transition: background-color $transition
 
         &:hover
@@ -27,11 +29,12 @@
             pointer-events: none
 
         &--extended
-            flex-direction: row
+            & > .flex
+                flex-direction: row
 
         &--selected
+            border-color: $color-primary
             background-color: $color-white !important
-            border: solid .2rem $color-primary
 
         &--error
             color: $color-white !important
@@ -72,6 +75,20 @@
         align-self: flex-start
         margin-right: .5rem
 
+    &__type
+        svg
+            width: 1.8rem
+            height: 1.8rem
+            margin-right: 1rem
+            fill: $color-blue
+
+        &s
+            flex-wrap: wrap
+            margin-top: 1.5rem
+
+        &--text
+            color: $color-blue
+
     // Detailed view
 
     &__detailed
@@ -104,8 +121,9 @@
         border-color: $color-grey-light
 
     &__placing
-        width: 32rem
-        height: 16rem
+        // width: 32rem
+        // height: 16rem
+        width: 100%
         display: block
         margin: 0 auto
         // border: solid .1rem $color-grey-medium

@@ -63,27 +63,45 @@ for (let index = 0; index < formTypes.length; index++) {
 finderSearch.addEventListener("click", function (e) {
     e.preventDefault();
 
-    // Send ajax and make active search or print error in console
-    axios.get(' /rooms' , {
-        params: {
-            location: formLocationNumber.value,
-            numberOfPeople: document.getElementById("finder-people-amount").value,
-            filterDeskPlace: (formTypes[0].parentElement.getElementsByTagName("input")[0].checked ? 1 : 0),
-            filterSilentRoom: (formTypes[1].parentElement.getElementsByTagName("input")[0].checked ? 2 : 0),
-            filterMeetingRoom: (formTypes[2].parentElement.getElementsByTagName("input")[0].checked ? 3 : 0)
-        }
-    })
-    .then(function (response) {
-        activeSearch(response.data);
-    })
-    .catch(function (error) {
-        console.error(error);
-    });
+    const finderParams = {
+        location: formLocationNumber.value,
+        numberOfPeople: document.getElementById("finder-people-amount").value,
+        filterDeskPlace: (formTypes[0].parentElement.getElementsByTagName("input")[0].checked ? 1 : 0),
+        filterSilentRoom: (formTypes[1].parentElement.getElementsByTagName("input")[0].checked ? 2 : 0),
+        filterMeetingRoom: (formTypes[2].parentElement.getElementsByTagName("input")[0].checked ? 3 : 0)
+    };
+
+    searchRooms(finderParams);
 });
+
+// Get and show search history
+const searchHistory = JSON.parse(window.localStorage.getItem("search-history"));
+if (searchHistory != null) {
+    let historyWrapper = document.getElementsByClassName("history")[0];
+    const historyTemplate = document.getElementsByClassName("history__item")[0];
+
+    var newHistoryItem = historyTemplate.cloneNode(true);
+    newHistoryItem.addEventListener("click", function () {
+        searchRooms(searchHistory);
+    });
+    axios.get("location/" + searchHistory.location)
+        .then((response) => { newHistoryItem.getElementsByClassName("history__location")[0].innerHTML = response.data; newHistoryItem.removeAttribute("style"); })
+        .catch((error) => { console.error(error) });
+    newHistoryItem.getElementsByClassName("h4")[0].innerHTML = String(Boolean(searchHistory.filterDeskPlace) ? "Desk - " : "") + String(Boolean(searchHistory.filterSilentRoom) ? "Silent room - " : "") + String(Boolean(searchHistory.filterMeetingRoom) ? "Meeting room - " : "") + String(searchHistory.numberOfPeople + " people");
+
+    historyWrapper.append(newHistoryItem);
+} else document.getElementsByClassName("history__wrapper")[0].style.display = "none";
 
 // Functions
 
-function activeSearch (data) {
+function searchRooms (finderParams) {
+    // Send ajax and make active search or print error in console
+    axios.get('rooms' , { params: finderParams })
+    .then((response) => activeSearch(response.data, finderParams))
+    .catch((error) => { console.error(error) });
+}
+
+function activeSearch (data, finderParams) {
     // Remove first-view element
     if (!firstView.classList.contains("dashboard__first-view--hide")) firstView.classList.add("dashboard__first-view--hide");
 
@@ -93,15 +111,25 @@ function activeSearch (data) {
     // Make all rooms appended rooms clickable
     var roomItems = document.getElementsByClassName("rooms__item");
     for (let index = 0; index < roomItems.length; index++) roomItems[index].addEventListener("click", detailedRoom);
+
+    // Set search history in localstorage
+    window.localStorage.setItem("search-history", JSON.stringify(finderParams));
+
+    finderCollapse();
 }
 
 function detailedRoom (event) {
     event.preventDefault();
 
+    for (let index = 0; index < event.target.parentElement.children.length; index++) event.target.parentElement.children[index].classList.remove("rooms__item--selected");
+    event.target.classList.add("rooms__item--selected");
+
     const id = event.target.dataset.id;
     axios.get("room/" + id).then(function (response) {
         var searchDetailed = document.getElementsByClassName("dashboard__search-detailed")[0];
         searchDetailed.innerHTML = response.data;
+        searchDetailed.removeAttribute("style")
+        document.getElementsByClassName("dashboard__search-inner")[0].style.width = "initial";
         initCanvas(searchDetailed.getElementsByClassName("rooms__placing")[0], JSON.parse(searchDetailed.getElementsByClassName("rooms__placing")[0].dataset.gridtemplate));
     }).catch(function (error) { console.error(error); });
 }
@@ -148,3 +176,12 @@ function drawSquares (ctx, data) {
 function drawSquare (ctx, x, y) {
     ctx.fillRect(x, y, 10, 10);
 }
+
+// Search history fills in finder
+// Search history text into labels
+// When searching results acros full screen
+// Reuse code in Reservation page
+
+// Search history clickable
+// Search results room type label
+// When searching back down the menu
