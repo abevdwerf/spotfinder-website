@@ -6,13 +6,15 @@
     text-align: center
     color: $color-white
     display: inline-block
-    padding: 1.25rem 2rem
+    padding: 1.25rem 1.75rem
     border-radius: $border-radius
+    border: solid .2rem transparent
     background-color: $color-primary
-    transition: color $transition, background-color $transition
+    transition: color $transition, background-color $transition, border-color $transition
 
     &:hover
         color: $color-white
+        border-color: $color-blue !important
         background-color: $color-blue !important
 
     &--secundary
@@ -32,4 +34,4 @@
 
     @media screen and (min-width: $laptop)
         min-width: 20rem
-        padding: 1.5rem 2.5rem
+        padding: 1.25rem 2.5rem

@@ -12,20 +12,64 @@ html
             // font-size: 0.629vw
             // font-size: 0.55vw
 
+// Actual body element
+body
+    min-height: 100vh
+    overflow-x: hidden
+
+// Body inner element (because vue cannot be set on the body)
 .body
     font-size: 1.6rem
     min-height: 100vh
 
+    main
+        &::before
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            opacity: 0
+            z-index: 1
+            content: ""
+            position: absolute
+            pointer-events: none
+            background-color: $color-black
+            transition: opacity $transition
+
+            @media screen and (min-width: $laptop-m)
+                display: none
+
+        section
+            padding: 2.5rem 0
+
+            @media screen and (min-width: $mobile-landscape)
+                padding: 6rem 0
+            
+            @media screen and (min-width: $laptop)
+                padding: 12rem 0
+        
+    &--active-finder
+        main
+            &::before
+                opacity: .35
+                pointer-events: all
+
+        .finder
+            transform: translateX(0%)
+
+            &__collapse
+                display: none
+
+                svg
+                    transform: rotate(180deg)
+
+                @media screen and (min-width: $laptop)
+                    display: block
+
     &--side-nav
+        position: relative
         overflow-x: hidden
         background-color: #EFF2FD
-
-        &--active
-            .navigation
-                transform: translateY(0%)
-
-        .navigation
-            display: flex
 
         main
             flex: 1
@@ -33,32 +77,20 @@ html
             padding: 2.5rem
             position: relative
             min-height: calc(100vh - 8rem)
-
-            &::before
-                top: 0
-                left: 0
-                right: 0
-                bottom: 0
-                opacity: 0
-                z-index: 1
-                content: ""
-                position: absolute
-                pointer-events: none
-                background-color: $color-black
-                transition: opacity $transition
-
-                @media screen and (min-width: $laptop-m)
-                    display: none
-
+                
             @media screen and (min-width: $tablet)
                 padding: 5rem
 
             @media screen and (min-width: $laptop)
-                padding: 5rem 7.5rem 0
+                padding: 5rem
 
             @media screen and (min-width: $laptop-m)
                 margin-left: 42rem
-                padding-left: 7.5rem
+                padding: 5rem 7.5rem
+                // padding-left: 7.5rem
+
+            .navigation
+                display: flex
 
         @media screen and (min-width: $tablet)
             display: flex
@@ -68,25 +100,7 @@ html
                 display: none
 
         @media screen and (min-width: $laptop)
-            margin-left: 32rem
-
-    &.body--active-finder
-        main
-            &::before
-                opacity: .35
-                pointer-events: all
-
-        .finder
-            transform: translateX(0%)
-
-            .finder__collapse
-                display: none !important
-
-                svg
-                    transform: rotate(180deg)
-
-                @media screen and (min-width: $laptop)
-                    display: block
+            // margin-left: 32rem
 
     &--purple-back
         background-color: $color-primary
@@ -108,13 +122,3 @@ html
 
         .lava-circle__wrapper
             min-height: 100vh
-
-main
-    section
-        padding: 2.5rem 0
-
-        @media screen and (min-width: $mobile-landscape)
-            padding: 6rem 0
-        
-        @media screen and (min-width: $laptop)
-            padding: 12rem 0

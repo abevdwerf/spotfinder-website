@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
 use App\Models\Location;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
@@ -15,11 +16,10 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $locations = Location::all();
-
-        return view("reservate", [
-            "page" => "Reservate",
-            "locations" => $locations
+        return view("reserve", [
+            "page" => "Reserve",
+            "rooms" => Room::all(),
+            "locations" => Location::all(),
         ]);
     }
 

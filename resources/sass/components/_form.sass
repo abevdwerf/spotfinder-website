@@ -33,6 +33,11 @@
         &:focus
             outline: none
 
+        &--hidden
+            opacity: 0
+            position: absolute
+            pointer-events: none
+
         &--date
             cursor: pointer
 
@@ -202,6 +207,7 @@
 
     &__custom-scroll
         padding: 1rem
+        overflow: auto
         scrollbar-width: thin
 
     &__selection-item

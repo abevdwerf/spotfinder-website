@@ -1,4 +1,4 @@
-@if (count($rooms) > 0)
+{{-- @if (count($rooms) > 0)
     @foreach($rooms as $room)
         <div class="rooms__item rooms__item--extended box flex" data-id="{{ $room->id }}">
             <div class="flex">
@@ -93,4 +93,4 @@
             </li>
         </ul>
     </div>
-@endif
+@endif --}}

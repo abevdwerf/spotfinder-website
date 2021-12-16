@@ -7,7 +7,7 @@
     use App\Models\Reservation;
     use Illuminate\Support\Facades\Auth;
 
-class DashboardController extends Controller
+    class DashboardController extends Controller
     {
         public function index ()
         {
@@ -40,21 +40,23 @@ class DashboardController extends Controller
             $locationId =  $_GET["location"];
             $numberOfPeople = $_GET["numberOfPeople"];
             $filters = array(
-                1 => $_GET["filterDeskPlace"],
-                2 => $_GET["filterSilentRoom"],
-                3 => $_GET["filterMeetingRoom"]
+                1 => $_GET["typeDesk"] === 'true' ? '1' : false,
+                2 => $_GET["typeSilent"]  === 'true' ? '2' : false,
+                3 => $_GET["typeMeeting"]  === 'true' ? '3' : false
             );
 
             //TODO filteren op numberofpeople (is nog niet gedaan omdat die data nog niet in de database staat)
 
-            return view("rooms")->with(
-                array(
-                    'filters' => $filters,
-                    'numberOfPeople' => $numberOfPeople,
-                    'location' => Location::find($locationId),
-                    'rooms' => Room::join('floors', 'rooms.floor_id', '=', 'floors.id')->where('floors.location_Id', $locationId)->whereIn('room_type_id', $filters)->get()
-                )
-            );
+            return json_encode(Room::join('floors', 'rooms.floor_id', '=', 'floors.id')->where('floors.location_Id', $locationId)->whereIn('room_type_id', $filters)->get());
+
+            // return view("rooms")->with(
+            //     array(
+            //         'filters' => $filters,
+            //         'numberOfPeople' => $numberOfPeople,
+            //         'location' => Location::find($locationId),
+            //         'rooms' => Room::join('floors', 'rooms.floor_id', '=', 'floors.id')->where('floors.location_Id', $locationId)->whereIn('room_type_id', $filters)->get()
+            //     )
+            // );
         }
 
         public function getRoom ($id) {

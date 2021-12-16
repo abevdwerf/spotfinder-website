@@ -1,9 +1,8 @@
 .finder
     z-index: 2
-    padding: 2.5rem
     max-width: 100vw
+    max-height: 100vh
     position: absolute
-    padding-bottom: 12rem
     transform: translateX(-100%)
     min-height: calc(100vh - 8rem)
     background-color: $color-white
@@ -11,6 +10,16 @@
 
     .h1
         width: calc(100% - (2.2rem + 2.5rem))
+
+    &__inner
+        overflow: auto
+        padding: 2.5rem
+        max-height: 100vh
+        position: relative
+        padding-bottom: 12rem
+
+        @media screen and (min-width: $tablet)
+            padding: 5rem
 
     &__close
         top: 2.5rem
@@ -33,27 +42,39 @@
         top: 50%
         left: calc(100%)
         position: absolute
-        padding: 1.5rem 1rem
-        box-shadow: $box-shadow
         transform: translateY(-50%)
-        background-color: $color-white
-        border-radius: 0 $border-radius $border-radius 0
+        
+        &-inner
+            position: relative
+            padding: 1.5rem 1rem
+            box-shadow: $box-shadow
+            background-color: $color-white
+            border-radius: 0 $border-radius $border-radius 0
 
-        svg
-            width: 1.6rem
-            height: 1.6rem
-            display: block
-            fill: $color-primary
-            transition: transform $transition
+            &::after
+                content: ""
+                top: 0
+                bottom: 0
+                z-index: 2
+                right: 100%
+                width: 1.75rem
+                position: absolute
+                background-color: $color-white
 
-        @media screen and (min-width: $laptop-m)
-            display: none !important
+            svg
+                width: 1.6rem
+                height: 1.6rem
+                display: block
+                fill: $color-primary
+                transition: transform $transition
+
+            @media screen and (min-width: $laptop-m)
+                display: none !important
 
     @media screen and (min-width: $mobile-landscape)
         width: 100vw
 
     @media screen and (min-width: $tablet)
-        padding: 5rem
         min-height: 100vh
         width: calc(100vw - 28rem)
 

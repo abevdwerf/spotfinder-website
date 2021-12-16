@@ -42,7 +42,7 @@
                                 <p>
                                     Spotfinder is a web-service which will help you find your ideal working-envoirement.
                                     If Spotfinder is integrated in your office or school-building then the available workplaces will be shown on the <a href="{{ url('dashboard')}}">webapplication</a>.
-                                    You can easily find a workspace that fits your needs by applying filters to the search-result. It is also possible to reservate a specific room beforehand.
+                                    You can easily find a workspace that fits your needs by applying filters to the search-result. It is also possible to reserve a specific room beforehand.
                                 </p>
                                 <a href="{{ url('dashboard') }}" class="btn">Use SpotFinder</a>
                             </div>

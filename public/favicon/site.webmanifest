@@ -15,6 +15,5 @@
     ],
     "theme_color": "#a200ff",
     "background_color": "#a200ff",
-    "start_url": "https://spotfinder.rubenvdven.nl",
     "display": "standalone"
 }

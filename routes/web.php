@@ -21,6 +21,6 @@ use Illuminate\Support\Facades\Route;
     Route::get("room/{id}", [App\Http\Controllers\DashboardController::class, 'getRoom']);
     Route::get("location/{id}", [App\Http\Controllers\DashboardController::class, 'getLocation']);
 
-    Route::get("reservate", [App\Http\Controllers\ReservationController::class, 'index']);
-    Route::get("reservate/{id}", [App\Http\Controllers\ReservationController::class, 'show']);
+    Route::get("reserve", [App\Http\Controllers\ReservationController::class, 'index']);
+    Route::get("reserve/{id}", [App\Http\Controllers\ReservationController::class, 'show']);
 ?>
