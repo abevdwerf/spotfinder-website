@@ -48,15 +48,6 @@
             //TODO filteren op numberofpeople (is nog niet gedaan omdat die data nog niet in de database staat)
 
             return json_encode(Room::join('floors', 'rooms.floor_id', '=', 'floors.id')->where('floors.location_Id', $locationId)->whereIn('room_type_id', $filters)->get());
-
-            // return view("rooms")->with(
-            //     array(
-            //         'filters' => $filters,
-            //         'numberOfPeople' => $numberOfPeople,
-            //         'location' => Location::find($locationId),
-            //         'rooms' => Room::join('floors', 'rooms.floor_id', '=', 'floors.id')->where('floors.location_Id', $locationId)->whereIn('room_type_id', $filters)->get()
-            //     )
-            // );
         }
 
         public function getRoom ($id) {

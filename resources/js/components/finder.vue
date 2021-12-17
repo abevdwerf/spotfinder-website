@@ -82,45 +82,46 @@
                     default:
                         // Get search results
                         axios.get(this.submitUrl , { params: this.values })
-                        .then((response) => this.searchAvailable(response.data)).catch((error) => console.log(error));
+                        .then((response) => this.searchAvailable(response.data, values)).catch((error) => console.log(error));
                     break;
                 }
-            },
-            searchAvailable(response) {
+
                 let values = this.values;
                 if (values.location !== "") {
                     // Close the finder to show the results
-                    if (this.$parent.$el.classList.contains("body--active-finder")) this.finderToggle();
-
-                    // Loop trough new rooms
-                    this.$parent.rooms = response;
+                    if (this.$parent.$el.classList.contains("body--active-finder")) this.finderToggle();                 
                     
-                    // Remove default page-content
-                    const tabs = document.getElementsByClassName("tab__item");
-                    tabs[0].classList.add("tab__item--hide");
-                    tabs[1].classList.remove("tab__item--hide");
-
-                    axios.get("location/" + values.location).then((locationResponse) => {
-                        // Gather search history from localstorage
-                        let historyArray = JSON.parse(window.localStorage.getItem("search-history"));
-
-                        // Set appropiate locationName
-                        values.locationName = locationResponse.data;
-
-                        // // Set new search history in localstorage
-                        if (historyArray != null) {
-                            historyArray.unshift(values);
-                            if (historyArray.length > 4 ) historyArray.length = 4;
-                            window.localStorage.setItem("search-history", JSON.stringify(historyArray));
-                        } else window.localStorage.setItem("search-history", JSON.stringify([values]));
-                    });
                 }
+            },
+            searchAvailable(response, values) {
+                // Loop trough new rooms
+                this.$parent.rooms = response;
+
+                // Remove default page-content
+                const tabs = document.getElementsByClassName("tab__item");
+                tabs[0].classList.add("tab__item--hide");
+                tabs[1].classList.remove("tab__item--hide");
+
+                axios.get("location/" + values.location).then((locationResponse) => {
+                    // Gather search history from localstorage
+                    let historyArray = JSON.parse(window.localStorage.getItem("search-history"));
+
+                    // Set appropiate locationName
+                    values.locationName = locationResponse.data;
+
+                    // // Set new search history in localstorage
+                    if (historyArray != null) {
+                        historyArray.unshift(values);
+                        if (historyArray.length > 4 ) historyArray.length = 4;
+                        window.localStorage.setItem("search-history", JSON.stringify(historyArray));
+                    } else window.localStorage.setItem("search-history", JSON.stringify([values]));
+                });
             },
             searchReservations() {
 
             },
             reservate(roomId) {
-                axios.post(this.submitUrl , {
+                axios.post(this.reservateUrl , {
                     "room_id": roomId,
                     "reservation_start": this.reservationValues.date + " " + this.reservationValues.beginTime,
                     "reservation_end": this.reservationValues.date + " " + this.reservationValues.endTime

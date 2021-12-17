@@ -60,11 +60,18 @@
         &-left
             margin-bottom: 1.5rem
 
-        &-right
-            // margin-left: 2.5rem
+            @media only screen and (min-width: $extra-large)
+                margin-bottom: 0
 
+        &-right
             p
                 text-align: center
+
+            @media only screen and (min-width: $extra-large)
+                margin-left: 2.5rem
+
+        @media only screen and (min-width: $extra-large)
+            display: flex
 
     &__divider
         margin: 3rem 0
