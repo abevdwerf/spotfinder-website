@@ -54,30 +54,40 @@
     </finder>
 
     <main>
-        <div class="rooms__wrapper flex">
-            <div class="rooms flex">
-                <h3 class="h3">Reservable workspaces</h3>
+        <div class="tab__item">
+            <h2 class="h2" style="margin-bottom: 1rem;">Find a workspace to place a reservation</h2>
+            <p>
+                Use the reservation-option finder (located left from this text), <br/>
+                to search for a workplace that is available for reservation.
+            </p>
+        </div>
 
-                <a href="#" class="rooms__item box flex" v-for="room in {{ json_encode($rooms) }}" :key="room.id" v-on:click.prevent="roomToggle($event, room)">
-                    <span class="rooms__floor">Ground floor</span>
-                    <h4 class="h4">Oil [[ room.room_name ]]</h4>
-                </a>
-            </div>
-
-            <div class="rooms__detailed box" v-if="room != null">
-                <div class="rooms__info flex">
-                    <div class="rooms__info-left">
-                        <h2 class="h2">OIL [[ room.room_name ]]</h2>
-                        <p>Capacity of [[ room.max_persons]] people</p>
-                    </div>
-
-                    <div class="rooms__info-right">
-                        <a href="#" class="btn btn--thirdiary" v-on:click.prevent="$refs.finder.reservate(room.id)">Reserve</a>
-                        <p>Today: [[ $refs.finder.reservationValues.beginTime ? $refs.finder.reservationValues.beginTime : "No begin-time selected" ]] - [[ $refs.finder.reservationValues.endTime ? $refs.finder.reservationValues.endTime : "No ending-time selected" ]]</p>
-                    </div>
+        <div class="tab__item tab__item--hide">
+            <div class="rooms__wrapper flex">
+                <div class="rooms flex">
+                    <h3 class="h3">Reservable workspaces</h3>
+    
+                    <a href="#" class="rooms__item box flex" v-for="room in {{ json_encode($rooms) }}" :key="room.id" v-on:click.prevent="roomToggle($event, room)">
+                        <span class="rooms__floor">Ground floor</span>
+                        <h4 class="h4">Oil [[ room.room_name ]]</h4>
+                    </a>
                 </div>
-                <hr class="rooms__divider">
-                <canvas-grid ref="canvas" class="rooms__placing" ></canvas-grid>
+    
+                <div class="rooms__detailed box" v-if="room != null">
+                    <div class="rooms__info flex">
+                        <div class="rooms__info-left">
+                            <h2 class="h2">OIL [[ room.room_name ]]</h2>
+                            <p>Capacity of [[ room.max_persons]] people</p>
+                        </div>
+    
+                        <div class="rooms__info-right">
+                            <a href="#" class="btn btn--thirdiary" v-on:click.prevent="$refs.finder.reservate(room.id)">Reserve</a>
+                            <p>Today: [[ $refs.finder.reservationValues.beginTime ? $refs.finder.reservationValues.beginTime : "No begin-time selected" ]] - [[ $refs.finder.reservationValues.endTime ? $refs.finder.reservationValues.endTime : "No ending-time selected" ]]</p>
+                        </div>
+                    </div>
+                    <hr class="rooms__divider">
+                    <canvas-grid ref="canvas" class="rooms__placing" ></canvas-grid>
+                </div>
             </div>
         </div>
     </main>

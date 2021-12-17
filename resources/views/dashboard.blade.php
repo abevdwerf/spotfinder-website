@@ -115,7 +115,7 @@
                 </div>
             @endif
 
-            <finder-history></finder-history>
+            <finder-history illustration="{{ url('img/detective-illustration.svg') }}"></finder-history>
         </div>
 
         <div class="tab__item tab__item--hide">

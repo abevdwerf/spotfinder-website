@@ -89,7 +89,13 @@
                 let values = this.values;
                 if (values.location !== "") {
                     // Close the finder to show the results
-                    if (this.$parent.$el.classList.contains("body--active-finder")) this.finderToggle();                 
+                    if (this.$parent.$el.classList.contains("body--active-finder")) this.finderToggle();    
+                    
+                    // Remove default page-content
+                    const tabs = document.getElementsByClassName("tab__item");
+
+                    tabs[0].classList.add("tab__item--hide");
+                    tabs[1].classList.remove("tab__item--hide");
                     
                 }
             },
@@ -101,11 +107,6 @@
                 this.$parent.$refs.locationDropdown.$refs.shownInput.value = this.values.locationName;
                 var numberChildren = this.$parent.$refs.numberOfPeopleSelector.$refs.wrapper.children;
                 for (let index = 0; index < numberChildren.length; index++) if (parseInt(numberChildren[index].dataset.id) === this.values.numberOfPeople) numberChildren[index].click();
-
-                // Remove default page-content
-                const tabs = document.getElementsByClassName("tab__item");
-                tabs[0].classList.add("tab__item--hide");
-                tabs[1].classList.remove("tab__item--hide");
 
                 // Gather search history from localstorage
                 let historyArray = JSON.parse(window.localStorage.getItem("search-history"));

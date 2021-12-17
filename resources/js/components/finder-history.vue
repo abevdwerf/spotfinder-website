@@ -1,8 +1,8 @@
 <template>
-    <div v-show="historyItems.length > 0">
+    <div >
         <h3 class="h3">Search history</h3>
 
-        <div class="history flex">
+        <div class="history flex" v-show="historyItems != null && historyItems.length > 0">
             <a ref="itemTemplate" href="#" class="box history__item" v-for="(history, index) in historyItems" :key="index" v-on:click.prevent="itemClick(history)">
                 <span class="history__location">{{ history.locationName }}</span>
                 <h4 class="h4">{{ history.numberOfPeople }} persons</h4>
@@ -23,6 +23,15 @@
                 </div>
             </a>
         </div>
+
+        <div class="box history__none-box" v-show="historyItems == null" style="max-width: 52rem;">
+            <h3 class="h3">You did not search for any available workspaces (yet)</h3>
+            <p>
+                If you use the workspace-finder (located left from this text) then your search-history will be kept and you can re-use those search parameters.
+            </p>
+
+            <img class="history__image" :src="illustration" alt="Illustration of sherlock">
+        </div>
     </div>
 </template>
 
@@ -35,6 +44,7 @@
                 historyItems: JSON.parse(window.localStorage.getItem("search-history"))
             }
         },
+        props: ["illustration"],
         methods: {
             itemClick(historyItem) {
                 var finder = this.$parent.$refs.finder;

@@ -12,8 +12,8 @@
     export default {
         data() {
             return {
-                width: 400,
-                height: 200
+                width: 1600,
+                height: 800
             }
         },
         methods: {
@@ -49,11 +49,11 @@
             },
             drawSquares(ctx, data) {
                 // Check if data isn't empty and loop trough the data
-                if (data != null) for (let index = 0; index < data.length; index++) this.drawSquare(ctx, data[index].x * 10, data[index].y * 10);
+                if (data != null) for (let index = 0; index < data.length; index++) this.drawSquare(ctx, data[index].X * 10, data[index].Y * 10);
             },
             drawSquare(ctx, x, y) {
                 ctx.fillStyle= "#a200ff";
-                ctx.fillRect(x, y, 10, 10);
+                ctx.fillRect(x, y, 120, 120);
             }
         }
     }
