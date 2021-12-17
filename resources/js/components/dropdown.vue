@@ -36,6 +36,7 @@
 
                 // Collect the values (text and id) from this option
                 this.$refs.shownInput.value = option.target.innerHTML;
+                this.$parent.values[this.value + "Name"] = option.target.innerHTML;
                 this.$parent.values[this.value] = parseInt(option.target.dataset.id);
             }
         }

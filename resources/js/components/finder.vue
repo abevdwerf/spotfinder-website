@@ -66,7 +66,7 @@
                 }
             }
         },
-        props: ["type", "heading", "submitUrl"],
+        props: ["type", "heading", "submitUrl", "reservateUrl"],
         methods: {
             finderToggle() {
                 if (this.$parent.$el.classList.contains("body--active-finder")) this.$parent.$el.classList.remove("body--active-finder");
@@ -97,25 +97,25 @@
                 // Loop trough new rooms
                 this.$parent.rooms = response;
 
+                // Set location
+                this.$parent.$refs.locationDropdown.$refs.shownInput.value = this.values.locationName;
+                var numberChildren = this.$parent.$refs.numberOfPeopleSelector.$refs.wrapper.children;
+                for (let index = 0; index < numberChildren.length; index++) if (parseInt(numberChildren[index].dataset.id) === this.values.numberOfPeople) numberChildren[index].click();
+
                 // Remove default page-content
                 const tabs = document.getElementsByClassName("tab__item");
                 tabs[0].classList.add("tab__item--hide");
                 tabs[1].classList.remove("tab__item--hide");
 
-                axios.get("location/" + values.location).then((locationResponse) => {
-                    // Gather search history from localstorage
-                    let historyArray = JSON.parse(window.localStorage.getItem("search-history"));
+                // Gather search history from localstorage
+                let historyArray = JSON.parse(window.localStorage.getItem("search-history"));
 
-                    // Set appropiate locationName
-                    values.locationName = locationResponse.data;
-
-                    // // Set new search history in localstorage
-                    if (historyArray != null) {
-                        historyArray.unshift(values);
-                        if (historyArray.length > 4 ) historyArray.length = 4;
-                        window.localStorage.setItem("search-history", JSON.stringify(historyArray));
-                    } else window.localStorage.setItem("search-history", JSON.stringify([values]));
-                });
+                // // Set new search history in localstorage
+                if (historyArray != null) {
+                    historyArray.unshift(values);
+                    if (historyArray.length > 4 ) historyArray.length = 4;
+                    window.localStorage.setItem("search-history", JSON.stringify(historyArray));
+                } else window.localStorage.setItem("search-history", JSON.stringify([values]));
             },
             searchReservations() {
 
@@ -127,7 +127,7 @@
                     "reservation_end": this.reservationValues.date + " " + this.reservationValues.endTime
                 }).then((response) => {
                     alert("Succesvol gereserveerd");
-                }).catch((error) => console.log(error.response.data));
+                }).catch((error) => console.error(error));
             }
         }
     }

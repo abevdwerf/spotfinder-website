@@ -23,7 +23,7 @@
             
             <number-selector value="numberOfPeople" ref="numberOfPeopleSelector">
                 @for ($i = 1; $i < 8; $i++)
-                    <a href="#" class="form__selection-item flex" v-on:click.prevent="$refs.numberOfPeopleSelector.optionClick">{{ $i }}</a>
+                    <a href="#" class="form__selection-item flex" data-id="{{ $i }}" v-on:click.prevent="$refs.numberOfPeopleSelector.optionClick">{{ $i }}</a>
                 @endfor
             </number-selector>
         </div>

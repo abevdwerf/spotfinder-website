@@ -2,6 +2,7 @@
     flex-wrap: wrap
     margin-right: -2rem
     margin-bottom: -2rem
+    align-items: stretch
     justify-content: flex-start
 
     &__item
@@ -15,8 +16,14 @@
         &:hover
             background-color: $color-grey-light
 
-            .history__location
+            .h4, .history__location, .history__type
                 color: $color-primary
+
+                svg
+                    fill: $color-primary
+
+            hr
+                border-color: $color-grey-medium
 
         @media screen and (min-width: $mobile-landscape)
             width: calc(50% - 2rem)
@@ -33,10 +40,41 @@
             &:nth-child(4n)
                 width: calc(25% - 2rem)
 
+    .h4
+        transition: background-color $transition
+
+    hr
+        margin: 2rem 0
+        border: solid .2rem $color-grey-light
+        border-top: none
+        transition: border-color $transition
+
     &__location
         display: block
         font-weight: 500
         font-size: 1.4rem
         margin-bottom: .75rem
-        color: $color-grey-medium
+        color: $color-grey
         transition: color $transition
+
+    &__types
+        flex-wrap: wrap
+        margin-right: -2rem
+        margin-bottom: -1.25rem
+        justify-content: flex-start
+
+    &__type
+        font-weight: 500
+        font-size: 1.4rem
+        color: $color-grey
+        margin-right: 2rem
+        margin-bottom: 1.25rem
+        justify-content: flex-start
+        transition: color $transition
+        
+        svg
+            display: block
+            height: 1.8rem
+            fill: $color-grey
+            margin-right: 1.25rem
+            transition: fill $transition

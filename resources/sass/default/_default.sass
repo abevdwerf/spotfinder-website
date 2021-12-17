@@ -14,13 +14,15 @@ html
 
 // Actual body element
 body
-    min-height: 100vh
-    overflow-x: hidden
+    min-height: calc(100vh - 8rem)
 
 // Body inner element (because vue cannot be set on the body)
 .body
+    height: 100vh
+    overflow: auto
     font-size: 1.6rem
-    min-height: 100vh
+    position: relative
+    overflow-x: hidden
 
     main
         &::before
@@ -67,7 +69,7 @@ body
                     display: block
 
     &--side-nav
-        margin-top: 8rem
+        padding-top: 8rem
         position: relative
         overflow-x: hidden
         background-color: #EFF2FD
@@ -88,14 +90,13 @@ body
             @media screen and (min-width: $laptop-m)
                 margin-left: 42rem
                 padding: 5rem 7.5rem
-                // padding-left: 7.5rem
 
             .navigation
                 display: flex
 
         @media screen and (min-width: $tablet)
             display: flex
-            margin-top: 0
+            padding-top: 0
             margin-left: 28rem
 
             .navigation__head
