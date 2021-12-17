@@ -6,6 +6,7 @@ use App\Models\Room;
 use App\Models\Location;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -28,9 +29,18 @@ class ReservationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        // $reservation = new Reservation([
+        //     "user_id" => Auth::Check() ? Auth::User()->id : "",
+        //     "room_id" => $request->get('roomId'),
+        //     "reservation_start" => $request->get('reservationStart'),
+        //     "reservation_end" => $request->get('reservationEnd')
+        // ]);
+
+        // die(var_dump($reservation));
+        
+        // $reservation->save();
     }
 
     /**
@@ -41,7 +51,12 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        Reservation::create($request->all());
+        Reservation::create([
+            "user_id" => Auth::Check() ? Auth::User()->id : "",
+            "room_id" => $request->get('room_id'),
+            "reservation_start" => $request->get('reservation_start'),
+            "reservation_end" => $request->get('reservation_end')
+        ]);
     }
 
     /**

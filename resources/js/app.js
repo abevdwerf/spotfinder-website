@@ -28,8 +28,11 @@ new Vue({
         navigationToggle() {
             this.navigationActive = !this.navigationActive;
         },
-        roomToggle(room) {
+        roomToggle(event, room) {
             this.room = room;
+            for (let index = 0; index < event.target.parentElement.children.length; index++) event.target.parentElement.children[index].classList.remove("rooms__item--selected");
+            event.target.classList.add("rooms__item--selected");
+            document.getElementsByClassName("rooms")[0].classList.add("rooms--searched");
         }
     },
     watch: {

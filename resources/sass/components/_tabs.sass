@@ -1,0 +1,71 @@
+.tab
+    &__item
+        top: 2.5rem
+        overflow: hidden
+        position: absolute
+        width: calc(100% - 5rem)
+        transform: translateX(0vw)
+        transition: transform $transition-slow
+
+        &--hide
+            transform: translateX(-100vw)
+
+        @media screen and (min-width: $tablet)
+            top: 5rem
+            width: calc(100% - 10rem)
+
+        @media screen and (min-width: $laptop-m)
+            width: calc(100% - 15rem)
+
+        
+// &__first-view, &__search-result
+//     top: 2.5rem
+//     overflow: hidden
+//     position: absolute
+//     padding-bottom: 12rem
+//     width: calc(100% - 5rem)
+//     transition: transform $transition-slow
+
+//     @media screen and (min-width: $tablet)
+//         top: 5rem
+//         width: calc(100% - 10rem)
+
+//     @media screen and (min-width: $laptop-m)
+//         width: calc(100% - 15rem)
+
+// &__first-view
+//     transform: translateX(0vw)
+
+//     &--hide
+//         transform: translateX(-100vw)
+
+//         & + .dashboard__search-result
+//             transform: translateX(0vw)
+            
+// &__content-wrap
+//     flex-direction: column
+//     align-items: flex-start
+//     justify-content: flex-start
+
+//     @media screen and (min-width: $laptop)
+//         flex-direction: row
+
+// &__search
+//     &-result
+//         transform: translateX(-100vw)
+
+//     &-detailed
+//         flex: 1
+//         width: 100%
+
+//     &-inner
+//         order: 2
+
+//         @media screen and (min-width: $laptop)
+//             order: 1
+
+//     &-detailed
+//         order: 1
+
+//         @media screen and (min-width: $laptop)
+//             order: 2

@@ -1,10 +1,9 @@
 .finder
     z-index: 2
-    max-width: 100vw
-    max-height: 100vh
-    position: absolute
+    width: 100vw
+    position: fixed
+    height: calc(100vh - 8rem)
     transform: translateX(-100%)
-    min-height: calc(100vh - 8rem)
     background-color: $color-white
     transition: transform $transition
 
@@ -12,14 +11,15 @@
         width: calc(100% - (2.2rem + 2.5rem))
 
     &__inner
+        height: 100%
         overflow: auto
         padding: 2.5rem
-        max-height: 100vh
         position: relative
-        padding-bottom: 12rem
+        max-height: calc(100vh - 8rem)
 
         @media screen and (min-width: $tablet)
             padding: 5rem
+            max-height: 100vh
 
     &__close
         top: 2.5rem
@@ -71,16 +71,12 @@
             @media screen and (min-width: $laptop-m)
                 display: none !important
 
-    @media screen and (min-width: $mobile-landscape)
-        width: 100vw
-
     @media screen and (min-width: $tablet)
-        min-height: 100vh
+        height: 100vh
         width: calc(100vw - 28rem)
 
     @media screen and (min-width: $laptop)
         width: 42rem
-        display: block
 
     @media screen and (min-width: $laptop-m)
         transform: translateX(0%)

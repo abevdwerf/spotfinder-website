@@ -23,4 +23,5 @@ use Illuminate\Support\Facades\Route;
 
     Route::get("reserve", [App\Http\Controllers\ReservationController::class, 'index']);
     Route::get("reserve/{id}", [App\Http\Controllers\ReservationController::class, 'show']);
+    Route::post("createReservation", [App\Http\Controllers\ReservationController::class, 'store']);
 ?>
