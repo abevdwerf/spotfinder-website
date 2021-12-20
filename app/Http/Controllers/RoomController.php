@@ -20,7 +20,7 @@ class RoomController extends Controller
             2 => $request->get("typeSilent")  === 'true' ? '2' : false,
             3 => $request->get("typeMeeting")  === 'true' ? '3' : false
         );
-        return json_encode(Room::join('floors', 'rooms.floor_id', '=', 'floors.id')->where('floors.location_Id', $locationId)->whereIn('room_type_id', $filters)->get());
+        return json_encode(Room::join('floors', 'rooms.floor_id', '=', 'floors.id')->where('floors.location_Id', $locationId)->whereIn('room_type_id', $filters) ->select('rooms.*', 'floors.location_id', 'floors.floor_name')->get());
     }
 
     public function create()
