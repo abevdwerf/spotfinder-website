@@ -13,6 +13,7 @@ class Room extends Model
         'floor_id',
         'room_name',
         'max_persons',
+        'grid_location',
         'room_type_id'
     ];
 
