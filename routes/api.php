@@ -6,6 +6,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\SensorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +56,11 @@ Route::middleware('auth.apikey')->group(function () {
     Route::post('room/create', [RoomController::class, 'store']);
     Route::put('room/update/{id}', [RoomController::class, 'update']);
     Route::delete('room/delete/{id}', [RoomController::class, 'destroy']);
+
+    Route::get('roomtypes', [RoomTypeController::class, 'index']);
+    Route::post('roomtype/create', [RoomTypeController::class, 'store']);
+    Route::put('roomtype/update/{id}', [RoomTypeController::class, 'update']);
+    Route::delete('roomtype/delete/{id}', [RoomTypeController::class, 'destroy']);
 
     Route::get('sensors', [SensorController::class, 'index']);
     Route::post('sensor/create', [SensorController::class, 'store']);
