@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
     Route::get("rooms", [App\Http\Controllers\RoomController::class, 'searchAvailable']);
     Route::get("location/{id}", [App\Http\Controllers\LocationController::class, 'getLocation']);
 
-    Route::get("reserve", [App\Http\Controllers\ReservationController::class, 'index']);
+    Route::get("reserve", [App\Http\Controllers\ReservationController::class, 'indexWeb']);
     Route::get("reservations", [App\Http\Controllers\ReservationController::class, 'searchAvailable']);
     Route::post("newReservation", [App\Http\Controllers\ReservationController::class, 'store']);
 ?>
