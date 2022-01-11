@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DeskController;
 use App\Http\Controllers\FloorController;
 use App\Http\Controllers\LocationController;
@@ -72,4 +74,7 @@ Route::middleware('auth.apikey')->group(function () {
 //    Route::post('user/create', [UserController::class, 'store']);
 //    Route::put('user/update/{id}', [UserController::class, 'update']);
 //    Route::delete('user/delete/{id}', [UserController::class, 'destroy']);
+
+    Route::post('/register', [RegisterController::class, 'register']);
+    Route::post('/login', [LoginController::class, 'login']);
 });
