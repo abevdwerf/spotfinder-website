@@ -11,6 +11,13 @@ use Validator;
 
 class AuthApiController extends Controller
 {
+    private $username;
+
+    public function __construct()
+    {
+        $this->username = $this->getLoginMode();
+    }
+
     /**
      * Register api
      *
@@ -60,12 +67,6 @@ class AuthApiController extends Controller
         return response()->json(['success'=>$success], 200);
     }
 
-    /**
-     * login api
-     *
-     * @return \Illuminate\Http\Response
-     */
-
 //    public function login(Request $request)
 //    {
 //        $fields = $request->validate([
@@ -90,9 +91,26 @@ class AuthApiController extends Controller
 //
 //        return response($response, 200);
 //    }
+    private function getLoginMode()
+    {
+        $login = request()->input('name');
+        $fieldType = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+        request()->merge([$fieldType => $login]);
+        return $fieldType;
+    }
 
+    public function username()
+    {
+        return $this->username;
+    }
+
+    /**
+     * login api
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function login(){
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')]))
+        if(Auth::attempt([$this->username() => request('name'), 'password' => request('password')]))
         {
             $user = Auth::user();
             $success['token'] = $user->createToken('authToken')->accessToken;
@@ -102,5 +120,12 @@ class AuthApiController extends Controller
         {
             return response()->json(['error'=>'Invalid credentials'], 401);
         }
+    }
+
+    public function logout(Request $request){
+        $request->user()->token()->revoke();
+        return response()->json([
+            'message' => 'Successfully logged out'
+        ]);
     }
 }
