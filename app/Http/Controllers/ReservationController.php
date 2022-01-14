@@ -16,12 +16,17 @@ class ReservationController extends Controller
             "page" => "Reserve",
             "rooms" => Room::all(),
             "locations" => Location::all(),
+            "reservations" => Auth::Check() ? Reservation::where('user_id', Auth::User()->id)->get() : "",
         ]);
     }
 
     public function create(Request $request)
     {
 
+    }
+
+    public function searchAvailable() {
+        echo json_encode(Reservation::all());
     }
 
     public function store(Request $request)

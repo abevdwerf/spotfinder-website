@@ -66,7 +66,7 @@
                 }
             }
         },
-        props: ["type", "heading", "submitUrl", "reservateUrl"],
+        props: ["type", "heading", "submitUrl", "reservateUrl", "getReservationsUrl"],
         methods: {
             finderToggle() {
                 if (this.$parent.$el.classList.contains("body--active-finder")) this.$parent.$el.classList.remove("body--active-finder");
@@ -75,8 +75,9 @@
             submit() {
                 switch (this.type) {
                     case "reservate":
-                        // Get available room reservations
-                        
+                        // Get search results
+                        axios.get(this.submitUrl , { params: this.values })
+                        .then((response) => { this.$parent.rooms = response.data; }).catch((error) => console.log(error));
                     break;
                 
                     default:
@@ -122,13 +123,36 @@
 
             },
             reservate(roomId) {
-                axios.post(this.reservateUrl , {
-                    "room_id": roomId,
-                    "reservation_start": this.reservationValues.date + " " + this.reservationValues.beginTime,
-                    "reservation_end": this.reservationValues.date + " " + this.reservationValues.endTime
-                }).then((response) => {
-                    alert("Succesvol gereserveerd");
-                }).catch((error) => console.error(error));
+                axios.get(this.getReservationsUrl).then((response) => {
+                    const wishedBeginHour = this.reservationValues.beginTime.split(":")[0];
+                    const wishedBeginMinute = this.reservationValues.beginTime.split(":")[1];
+                    const wishedEndHour = this.reservationValues.endTime.split(":")[0];
+                    const wishedEndMinute = this.reservationValues.endTime.split(":")[1];
+
+                    for (let index = 0; index < response.data.length; index++) {
+                        if (roomId == this.$parent.room.id) {
+                            const reservationPossibility = response.data[index];
+                            if (reservationPossibility.room_id === this.$parent.room.id) {
+                                const plannedBeginHour = reservationPossibility.reservation_start.split(' ')[1].split(":")[0];
+                                const plannedBeginMinute = reservationPossibility.reservation_start.split(' ')[1].split(":")[1];
+                                const plannedEndHour = reservationPossibility.reservation_end.split(' ')[1].split(":")[0];
+                                const plannedEndMinute = reservationPossibility.reservation_end.split(' ')[1].split(":")[1];
+
+                                if ((wishedBeginHour >= plannedBeginHour && wishedBeginHour <= plannedEndHour) || (wishedEndHour >= plannedBeginHour && wishedEndHour <= plannedEndHour)) {
+                                    alert("Tijd is al bezet");
+                                } else {
+                                    axios.post(this.reservateUrl , {
+                                        "room_id": roomId,
+                                        "reservation_start": this.reservationValues.date + " " + this.reservationValues.beginTime,
+                                        "reservation_end": this.reservationValues.date + " " + this.reservationValues.endTime
+                                    }).then((response) => {
+                                        alert("Succesvol gereserveerd");
+                                    }).catch((error) => console.error(error));
+                                }
+                            }
+                        }
+                    }
+                }).catch((error) => console.error(error.message));
             }
         }
     }
