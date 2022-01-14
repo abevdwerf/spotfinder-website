@@ -44,7 +44,7 @@ Route::middleware('auth.apikey')->group(function () {
     Route::post('/register', [AuthApiController::class, 'register']);
     Route::post('/login', [AuthApiController::class, 'login']);
 
-    Route::middleware('auth:api')->group(function () {
+    // Route::middleware('auth:api')->group(function () {
         Route::get('desks', [DeskController::class, 'index']);
         Route::post('desk/create', [DeskController::class, 'store']);
         Route::put('desk/update/{id}', [DeskController::class, 'update']);
@@ -79,5 +79,5 @@ Route::middleware('auth.apikey')->group(function () {
         //    Route::post('user/create', [UserController::class, 'store']);
         //    Route::put('user/update/{id}', [UserController::class, 'update']);
         //    Route::delete('user/delete/{id}', [UserController::class, 'destroy']);
-    });
+    // });
 });

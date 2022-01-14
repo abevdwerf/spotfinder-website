@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Desk;
+use App\Models\Module;
 
 class DeskController extends Controller
 {
@@ -35,7 +36,23 @@ class DeskController extends Controller
      */
     public function store(Request $request)
     {
-        Desk::create($request->all());
+        // Desk::create($request->all());
+        $data = $request->input();
+        
+        foreach($data as $key => $value){
+            // dd($value['available_spaces']);
+            $desk = new Desk();
+            $desk->available_spaces = $value['available_spaces'];
+            $desk->room_id = $value['room_id'];
+    
+            $desk->save();
+            
+            $module = Module::find($value['module_id']);
+            $module->desk_id = $desk->id;
+            $module->save();
+        }
+
+        return response()->json(array('success' => true, 'last_insert_id' => $desk->id), 200);
     }
 
     /**

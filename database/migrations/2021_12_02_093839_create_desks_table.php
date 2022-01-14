@@ -17,9 +17,6 @@ class CreateDesksTable extends Migration
             $table->id();
             $table->foreignId('room_id')->constrained()->onDelete('cascade');
             $table->integer('available_spaces');
-            $table->integer('wall_outlet');
-            $table->integer('x');
-            $table->integer('y');
             $table->timestamps();
         });
     }

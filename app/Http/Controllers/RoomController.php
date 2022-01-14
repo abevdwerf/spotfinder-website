@@ -30,7 +30,17 @@ class RoomController extends Controller
 
     public function store(Request $request)
     {
-        Room::create($request->all());
+        $room = Room::create($request->all());
+
+        // $room = new Room();
+        // $room->floor_id = $request->input('floor_id');
+        // $room->room_type_id = $request->input('room_type_id');
+        // $room->room_name = $request->input('room_name');
+        // $room->max_persons = $request->input('max_persons');
+        // $room->grid_locations = $request->input('grid_locations');
+        // $room->save();
+
+        return response()->json(array('success' => true, 'last_insert_id' => $room->id), 200);
     }
 
     public function show($id)
