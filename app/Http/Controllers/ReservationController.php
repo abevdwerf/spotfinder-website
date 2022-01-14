@@ -12,6 +12,11 @@ class ReservationController extends Controller
 {
     public function index()
     {
+        return Reservation::all();
+    }
+
+    public function indexWeb()
+    {
         return view("reserve", [
             "page" => "Reserve",
             "rooms" => Room::all(),
