@@ -1,0 +1,57 @@
+.time-selector
+    left: 0
+    right: 0
+    z-index: 1
+    opacity: 0
+    width: 18rem
+    bottom: 100%
+    padding: 2.5rem
+    overflow: hidden
+    position: absolute
+    pointer-events: none
+    box-shadow: $box-shadow
+    text-align: center
+    border-radius: $border-radius
+    background-color: $color-white
+
+    &--active
+        opacity: 1
+        pointer-events: all
+
+    &__input
+        cursor: pointer
+
+    &__time
+        display: block
+        font-weight: bold
+        margin-bottom: 1.5rem
+
+    &__part
+        &:not(:last-child)
+            margin-bottom: 1.5rem
+
+    &__label
+        display: block
+        font-weight: 600
+        margin-bottom: 1rem
+
+    &__options
+        height: 5.1rem
+        overflow: auto
+        justify-content: flex-start
+        border: solid .2rem $color-primary
+
+        &::scrollbar
+            opacity: 0
+
+    &__option
+        cursor: pointer
+        padding: .5rem 2rem
+
+        &:hover
+            color: $color-white
+            background-color: $color-grey-medium
+
+        &--active
+            color: $color-white
+            background-color: $color-primary
