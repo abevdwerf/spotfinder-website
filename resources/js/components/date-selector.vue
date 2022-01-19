@@ -1,6 +1,6 @@
 <template>
     <div style="position: relative;">
-        <input v-on:click.prevent="toggle" type="text" class="form__input date-picker__input" placeholder="Select a date" ref="input" :value="day != null ? day + ' ' + months[month] + ' ' + year : null" readonly />
+        <input v-on:click.prevent="toggle" type="text" class="form__input date-picker__input" placeholder="Select a date" ref="input" readonly />
         <div class="date-picker" ref="picker">
             <div class="date-picker__selected-date flex">
                 <a class="date-picker__arrow" href="#" v-on:click.prevent="prevMonth">&lt;</a>
@@ -68,6 +68,9 @@
                 for (let index = 0; index < children.length; index++) children[index].classList.remove("date-picker__day--active");
                 e.target.classList.toggle("date-picker__day--active");
                 this.toggle();
+                this.$refs.input.value = this.day + ' ' + this.months[this.month] + ' ' + this.year;
+                const month = this.month + 1;
+                this.$emit('value', (this.day < 10 ? this.day = '0' + this.day : this.day) + '-' + (this.month < 10 ? this.month = '0' + month : month) + '-' + this.year);
             }
         },
         mounted () {

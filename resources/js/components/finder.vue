@@ -13,7 +13,7 @@
                             Date
                         </label>
                         <!-- <input id="finder-date" class="form__input form__input--date" type="date" v-model="reservationValues.date"> -->
-                        <date-selector></date-selector>
+                        <date-selector @value="dateChange"></date-selector>
                     </div>
 
                     <div class="form__input-wrapper">
@@ -24,8 +24,8 @@
                         <div class="flex">
                             <!-- <input id="finder-begin-time" class="form__input form__input--date" type="time" v-model="reservationValues.beginTime">
                             <input id="finder-begin-end" class="form__input form__input--date" type="time" v-model="reservationValues.endTime"> -->
-                            <time-selector placeholder="Begin time"></time-selector>
-                            <time-selector placeholder="End time" :outer="true" style="margin-left: 2rem;"></time-selector>
+                            <time-selector @value="timeChange($event, 'begin')" placeholder="Begin time"></time-selector> <!-- v-bind:value="reservationValues.beginTime" -->
+                            <time-selector @value="timeChange($event, 'end')" placeholder="End time" :outer="true" style="margin-left: 2rem;"></time-selector>
                         </div>
                     </div>
 
@@ -83,13 +83,13 @@
                     case "reservate":
                         // Get search results
                         axios.get(this.submitUrl , { params: this.values })
-                        .then((response) => { this.$parent.rooms = response.data; }).catch((error) => console.log(error));
+                        .then((response) => { this.$parent.rooms = response.data; }).catch((error) => console.log(error.message));
                     break;
                 
                     default:
                         // Get search results
                         axios.get(this.submitUrl , { params: this.values })
-                        .then((response) => this.searchAvailable(response.data, values)).catch((error) => console.log(error));
+                        .then((response) => this.searchAvailable(response.data, values)).catch((error) => console.log(error.message));
                     break;
                 }
 
@@ -103,6 +103,20 @@
 
                     tabs[0].classList.add("tab__item--hide");
                     tabs[1].classList.remove("tab__item--hide");
+                }
+            },
+            dateChange(value) {
+                this.reservationValues.date = value;
+            },
+            timeChange(value, type) {
+                switch (type) {
+                    case "begin":
+                        this.reservationValues.beginTime = value
+                    break;
+
+                    case "end":
+                        this.reservationValues.endTime = value;
+                    break;
                 }
             },
             searchAvailable(response, values) {
@@ -123,9 +137,6 @@
                     if (historyArray.length > 4 ) historyArray.length = 4;
                     window.localStorage.setItem("search-history", JSON.stringify(historyArray));
                 } else window.localStorage.setItem("search-history", JSON.stringify([values]));
-            },
-            searchReservations() {
-
             },
             reservate(roomId) {
                 axios.get(this.getReservationsUrl).then((response) => {
@@ -152,7 +163,7 @@
                                         "reservation_end": this.reservationValues.date + " " + this.reservationValues.endTime
                                     }).then((response) => {
                                         alert("Succesvol gereserveerd");
-                                    }).catch((error) => console.error(error));
+                                    }).catch((error) => console.log(error.message));
                                 }
                             }
                         }

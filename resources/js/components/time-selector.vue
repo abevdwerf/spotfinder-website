@@ -51,7 +51,9 @@
 
                 if (this.hour != null && this.minute != null) {
                     this.toggle();
-                    this.$refs.input.value = this.hour + ":" + this.minute;
+                    const time = this.hour + ":" + this.minute;
+                    this.$emit('value', time);
+                    this.$refs.input.value = time;
                 }
             }
         }
