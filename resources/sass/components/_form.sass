@@ -1,4 +1,14 @@
 .form
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+
+    &__box
+        padding: 2.5rem
+        margin-top: 2.5rem
+        border-radius: $border-radius
+        background-color: $color-white
+
     &__label
         font-weight: 600
         color: $color-grey
@@ -51,7 +61,12 @@
             padding: 1.5rem 2.5rem
 
         &-wrapper
+            width: 100%
             position: relative
+
+            &--half
+                @media screen and (min-width: $tablet)
+                    width: calc(50% - 1.25rem)
 
             &--submit
                 margin-top: 3rem
@@ -67,6 +82,10 @@
                    
                 @media screen and (min-width: $laptop)
                     margin-bottom: 3rem
+
+    textarea.form__input
+        min-height: 20rem
+        resize: vertical
 
     &__checkbox
         width: 2.8rem

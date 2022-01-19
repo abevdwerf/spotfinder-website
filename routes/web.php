@@ -24,7 +24,8 @@ use Illuminate\Support\Facades\Route;
     Route::get("reservations", [App\Http\Controllers\ReservationController::class, 'searchAvailable']);
     Route::post("newReservation", [App\Http\Controllers\ReservationController::class, 'store']);
 
-    Route::get("about-us", function () { return View("about-us", ["page" => "About us"]); });
+    Route::get("about-us", function () { return View("about-us", ["page" => "About us", "finder" => false]); });
 
-    Route::get("contact", function () { return View("contact", ["page" => "Contact"]); });
+    Route::get("contact", function () { return View("contact", ["page" => "Contact", "finder" => false]); });
+    Route::post('contact', [App\Http\Controllers\ContactController::class, 'store']);
 ?>
