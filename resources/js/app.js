@@ -19,12 +19,21 @@ Vue.component('number-selector', numberSelector);
 new Vue({
     el: ".app",
     data: {
-        rooms: null,
         room: null,
+        rooms: null,
         navigationActive: false
     },
     delimiters: ['[[', ']]'],
     methods: {
+        tabChange(e, tab) {
+            const navigatorTabs = e.target.parentElement.children;
+            for (let index = 0; index < navigatorTabs.length; index++) navigatorTabs[index].classList.remove("tab__navigator__item--active");
+            e.target.classList.add("tab__navigator__item--active");
+
+            const tabs = document.getElementsByClassName("tab__item");
+            for (let index = 0; index < tabs.length; index++) tabs[index].classList.add("tab__item--hide");
+            document.querySelector("[data-" + tab + "]").classList.remove("tab__item--hide");
+        },
         navigationToggle() {
             this.navigationActive = !this.navigationActive;
         },
@@ -37,7 +46,7 @@ new Vue({
     },
     watch: {
         room(value) {
-            this.$nextTick(() => this.$refs.canvas.initCanvas(value.grid_location));
+            this.$nextTick(() => this.$refs.canvas.initCanvas(value.grid_location, this.rooms));
         }
     }
 });

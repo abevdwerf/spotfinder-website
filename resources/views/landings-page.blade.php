@@ -8,6 +8,8 @@
 
                 <ul class="header__list">
                     <a href="{{ url('dashboard') }}" class="header__list-item">Webapplication</a>
+                    <a href="{{ url('about-us') }}" class="header__list-item">Over ons</a>
+                    <a href="{{ url('contact') }}" class="header__list-item">Contact</a>
                     <a href="{{ url('login') }}" class="header__list-item btn">Login</a>
                     <a href="{{ url('register') }}" class="header__list-item btn btn--secundary">Register</a>
                 </ul>

@@ -1,4 +1,29 @@
 .tab
+    &__wrapper
+        .tab__item
+            top: 12.4rem
+
+            @media screen and (min-width: $tablet)
+                top: 15.4rem
+
+    &__navigator
+        display: flex
+        padding: 1rem
+        font-weight: 600
+        overflow-x: auto
+        background-color: $color-grey-light
+
+        &__item
+            display: inline-block
+            padding: 1.75rem 2.5rem
+            white-space: nowrap
+
+            &--active
+                background-color: $color-white
+
+            &:not(:last-child)
+                margin-right: .75rem
+
     &__item
         top: 2.5rem
         overflow: hidden
