@@ -41,7 +41,7 @@
 
                 switch (type) {
                     case "hour":
-                        this.hour = time
+                        this.hour = time;
                     break;
 
                     case "minute":
@@ -51,7 +51,7 @@
 
                 if (this.hour != null && this.minute != null) {
                     this.toggle();
-                    const time = this.hour + ":" + this.minute;
+                    const time = (this.hour < 10 ? "0" + this.hour : this.hour) + ":" + (this.minute < 10 ? "0" + this.minute : this.minute);
                     this.$emit('value', time);
                     this.$refs.input.value = time;
                 }

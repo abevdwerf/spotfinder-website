@@ -1,13 +1,11 @@
 @extends('layout')
 
 @section('content')
-    <main style="margin-left: 0;">
+    <main style="margin-left: 0; max-width: 120rem;">
         <h1 class="h1" style="margin-bottom: 1.5rem;">Contact</h1>
 
         <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur reprehenderit voluptatem sequi, enim autem
-            sed vero corrupti voluptatum quasi fugit veritatis tempora in dicta suscipit possimus pariatur vitae inventore
-            minima delectus voluptatibus, voluptate similique ad itaque.
+            Would you like to <b>report a bug</b> to the developers of Spotfinder? <br /> Or would you like to <b>enroll this service on a location that is owned by you</b>? <br /> Or maybe you just want to <b>compliment our service</b>? <br /> Then you can contact the developers of SpotFinder trough the following contact-form.
         </p>
 
         <div class="form__box">

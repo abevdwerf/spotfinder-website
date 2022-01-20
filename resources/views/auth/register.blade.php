@@ -96,9 +96,9 @@
                     <h2 class="h1">SpotFinder</h2>
 
                     <p>
-                        Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen. Lorem Ipsum is de
-                        standaard proeftekst in deze bedrijfstak sinds de 16e eeuw, toen een onbekende drukker een zethaak
-                        met letters nam en ze door elkaar husselde om een font-catalogus te maken.
+                        SpotFinder is an service which helps you find a available workplace. With our website you can
+                        search for workplaces and reserve rooms. With our management-application you can create, add and
+                        delete rooms and define all workspaces that will be shown on the website.
                     </p>
                 </div>
             </div>
