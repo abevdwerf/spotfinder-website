@@ -97,9 +97,15 @@
                     
                     // Remove default page-content
                     const tabs = document.getElementsByClassName("tab__item");
+                    let navTabs = document.getElementsByClassName("tab__navigator__item");
 
                     tabs[0].classList.add("tab__item--hide");
                     tabs[1].classList.remove("tab__item--hide");
+                    if (tabs[2]) tabs[2].classList.add("tab__item--hide");
+
+                    for (let index = 0; index < navTabs.length; index++) navTabs[index].classList.remove("tab__navigator__item--active");
+                    if (document.getElementsByClassName("tab__navigator__item")[0]) document.getElementsByClassName("tab__navigator__item")[0].classList.add("tab__navigator__item--active");
+                    
                 } else alert("You can't select a room without providing a location.");
             },
             dateChange(value) {
@@ -165,34 +171,36 @@
                         const wishedEndHour = parseInt(this.reservationValues.endTime.split(":")[0]);
                         const wishedEndMinute = parseInt(this.reservationValues.endTime.split(":")[1]);
 
-                        for (let index = 0; index < response.data.length; index++) if (roomId == this.$parent.room.id) if (reservateable === true) {
-                            const reservationPossibility = response.data[index];
-                            if (reservationPossibility.room_id === this.$parent.room.id) {
-                                if (this.reservationValues.date != reservationPossibility.reservation_start.split(' ')[0]) {
-                                    const plannedBeginHour = parseInt(reservationPossibility.reservation_start.split(' ')[1].split(":")[0]);
-                                    const plannedEndHour = parseInt(reservationPossibility.reservation_end.split(' ')[1].split(":")[0]);
-                                    const plannedBeginMinute = parseInt(reservationPossibility.reservation_start.split(' ')[1].split(":")[1]);
-                                    const plannedEndMinute = parseInt(reservationPossibility.reservation_end.split(' ')[1].split(":")[1]);
+                        for (let index = 0; index < response.data.length; index++) {
+                            if (reservateable === true) {
+                                const reservationPossibility = response.data[index];
+                                
+                                if (reservationPossibility.room_id == this.$parent.room.id) {
+                                    console.log(this.reservationValues.date, reservationPossibility.reservation_start.split(' ')[0]);
+                                    if (this.reservationValues.date == reservationPossibility.reservation_start.split(' ')[0]) {
+                                        const plannedBeginHour = parseInt(reservationPossibility.reservation_start.split(' ')[1].split(":")[0]);
+                                        const plannedEndHour = parseInt(reservationPossibility.reservation_end.split(' ')[1].split(":")[0]);
+                                        const plannedBeginMinute = parseInt(reservationPossibility.reservation_start.split(' ')[1].split(":")[1]);
+                                        const plannedEndMinute = parseInt(reservationPossibility.reservation_end.split(' ')[1].split(":")[1]);
 
-                                    // When you want a start or endtime that is between the planned begin or end time
-                                    if ((wishedBeginHour > plannedBeginHour && wishedBeginHour < plannedEndHour) || (wishedEndHour > plannedBeginHour && wishedEndHour < plannedEndHour)) {
-                                        reservateable = false;
-                                        alert(reservationPossibility.id + " There is already an reservation in this room from: " + reservationPossibility.reservation_start.split(' ')[1] + " until: " + reservationPossibility.reservation_end.split(' ')[1]);
-                                    }
-                                    // When you want a starttime that is near the end of an existing reservation
-                                    else if (wishedBeginHour == plannedEndHour) {
-                                        if (wishedBeginMinute > plannedEndMinute) {}
-                                        else {
+                                        // When you want a start or endtime that is between the planned begin or end time
+                                        if ((wishedBeginHour > plannedBeginHour && wishedBeginHour < plannedEndHour) || (wishedEndHour > plannedBeginHour && wishedEndHour < plannedEndHour)) {
                                             reservateable = false;
-                                            alert(reservationPossibility.id + " There is already an reservation in this room from: " + reservationPossibility.reservation_start.split(' ')[1] + " until: " + reservationPossibility.reservation_end.split(' ')[1]);
+                                            alert("There is already an reservation in this room from: " + reservationPossibility.reservation_start.split(' ')[1] + " until: " + reservationPossibility.reservation_end.split(' ')[1]);
                                         }
-                                    } 
-                                    // When you want a endtime that is near the start of an existing reservation
-                                    else if (wishedEndHour == plannedBeginHour) {
-                                        if (wishedEndMinute < plannedBeginMinute) {}
-                                        else {
-                                            reservateable = false;
-                                            alert(reservationPossibility.id + " There is already an reservation in this room from: " + reservationPossibility.reservation_start.split(' ')[1] + " until: " + reservationPossibility.reservation_end.split(' ')[1]);
+                                        // When you want a starttime that is near the end of an existing reservation
+                                        else if (wishedBeginHour == plannedEndHour) {
+                                            if (wishedBeginMinute < plannedEndMinute) {
+                                                reservateable = false;
+                                                alert("There is already an reservation in this room from: " + reservationPossibility.reservation_start.split(' ')[1] + " until: " + reservationPossibility.reservation_end.split(' ')[1]);
+                                            }
+                                        } 
+                                        // When you want a endtime that is near the start of an existing reservation
+                                        else if (wishedEndHour == plannedBeginHour) {
+                                            if (wishedEndMinute > plannedBeginMinute) {
+                                                reservateable = false;
+                                                alert("There is already an reservation in this room from: " + reservationPossibility.reservation_start.split(' ')[1] + " until: " + reservationPossibility.reservation_end.split(' ')[1]);
+                                            }
                                         }
                                     }
                                 }
@@ -209,7 +217,20 @@
                                 "room_id": roomId,
                                 "reservation_start": this.reservationValues.date + " " + this.reservationValues.beginTime + ":00",
                                 "reservation_end": this.reservationValues.date + " " + reservationEndTime + ":00"
-                            }).then((response) => alert("Reservated succesfully")).catch((error) => console.log(error.message));
+                            }).then((response) => {
+                                alert("Reservated succesfully");
+
+                                // Remove default page-content
+                                const tabs = document.getElementsByClassName("tab__item");
+                                let navTabs = document.getElementsByClassName("tab__navigator__item");
+
+                                if (tabs[2]) tabs[0].classList.add("tab__item--hide");
+                                if (tabs[2]) tabs[1].classList.add("tab__item--hide");
+                                if (tabs[2]) tabs[2].classList.remove("tab__item--hide");
+
+                                for (let index = 0; index < navTabs.length; index++) navTabs[index].classList.remove("tab__navigator__item--active");
+                                if (document.getElementsByClassName("tab__navigator__item")[1]) document.getElementsByClassName("tab__navigator__item")[1].classList.add("tab__navigator__item--active");
+                            }).catch((error) => console.log(error.message));
                         }
                     }).catch((error) => console.error(error.message));
                 }

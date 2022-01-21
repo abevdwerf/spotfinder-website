@@ -69,8 +69,9 @@
                 e.target.classList.toggle("date-picker__day--active");
                 this.toggle();
                 this.$refs.input.value = this.day + ' ' + this.months[this.month] + ' ' + this.year;
-                const month = this.month + 1;
-                this.$emit('value', this.year + '-' + (this.month < 10 ? this.month = '0' + month : month) + '-' + (this.day < 10 ? this.day = '0' + this.day : this.day));
+                let day = this.day;
+                let month = this.month;
+                this.$emit('value', this.year + '-' + ((month + 1) < 10 ? '0' + (month + 1) : (month + 1)) + '-' + (day < 10 ? '0' + day : day));
             }
         },
         mounted () {
