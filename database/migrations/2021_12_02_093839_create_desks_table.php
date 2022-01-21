@@ -15,11 +15,8 @@ class CreateDesksTable extends Migration
     {
         Schema::create('desks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('room_id')->constrained()->onDelete('cascade');
+            $table->integer('room_id');
             $table->integer('available_spaces');
-            $table->integer('wall_outlet');
-            $table->integer('x');
-            $table->integer('y');
             $table->timestamps();
         });
     }

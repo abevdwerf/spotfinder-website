@@ -45,6 +45,7 @@ Route::middleware('auth.apikey')->group(function () {
     Route::middleware('auth:api')->group(function () {
         Route::get('desks', [DeskController::class, 'index']);
         Route::post('desk/create', [DeskController::class, 'store']);
+        Route::post('desk/create/{id}', [DeskController::class, 'storeUpdate']);
         Route::put('desk/update/{id}', [DeskController::class, 'update']);
         Route::delete('desk/delete/{id}', [DeskController::class, 'destroy']);
 

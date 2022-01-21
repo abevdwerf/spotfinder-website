@@ -74,7 +74,7 @@
                     <h3 class="h3" style="margin-top: 3rem;">Your reservations</h3>
                     <div class="reservations flex">
                         @foreach ($reservations as $reservation)
-                            <a href="{{url('reservate').'/'.$reservation->id}}" class="reservation__item box">
+                            <a class="reservation__item box" v-on:click.prevent=""> {{-- href="{{url('reservate').'/'.$reservation->id}}" --}}
                                 <span class="reservation__location">{{$reservation->room->floor->location->location_name}}</span>
                                 <div class="flex" style="justify-content: flex-start;">
                                     <h4 class="h4">{{$reservation->room->room_name}}</h4>
@@ -171,6 +171,10 @@
                     <div class="rooms__info flex">
                         <div class="rooms__info-left">
                             <h2 class="h2">OIL [[ room.room_name ]]</h2>
+
+                            [[ room.room_type_id == 1 ? "Silent room" : ""]]
+                            [[ room.room_type_id == 2 ? "Workspaces with desks" : ""]]
+                            [[ room.room_type_id == 3 ? "Meeting room" : ""]]
                         </div>
                     </div>
                     <hr class="rooms__divider">
