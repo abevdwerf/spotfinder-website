@@ -114,6 +114,7 @@ class AuthApiController extends Controller
         {
             $user = Auth::user();
             $success['token'] = $user->createToken('authToken')->accessToken;
+            $success['name'] = $user->name;
             return response()->json(['success' => $success], 200);
         }
         else
