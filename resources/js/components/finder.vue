@@ -21,8 +21,8 @@
                             Time
                         </label>
                         <div class="flex">
-                            <time-selector @value="timeChange($event, 'begin')" placeholder="Begin time"></time-selector>
-                            <time-selector @value="timeChange($event, 'end')" placeholder="End time" :outer="true" style="margin-left: 2rem;"></time-selector>
+                            <time-selector ref="beginTime" @value="timeChange($event, 'begin')" placeholder="Begin time"></time-selector>
+                            <time-selector ref="endTime" @value="timeChange($event, 'end')" placeholder="End time" :outer="true" style="margin-left: 2rem;"></time-selector>
                         </div>
                     </div>
 
@@ -100,7 +100,7 @@
 
                     tabs[0].classList.add("tab__item--hide");
                     tabs[1].classList.remove("tab__item--hide");
-                }
+                } else alert("You can't select a room without providing a location.");
             },
             dateChange(value) {
                 this.reservationValues.date = value;
@@ -108,12 +108,30 @@
             timeChange(value, type) {
                 switch (type) {
                     case "begin":
-                        this.reservationValues.beginTime = value
+                        // Check if begintime does not come after endtime
+                        if (this.reservationValues.endTime === "" || parseInt(value.split(":")[0]) < parseInt(this.reservationValues.endTime.split(":")[0])) this.reservationValues.beginTime = value;
+                        else {
+                            if (parseInt(value.split(":")[0]) == parseInt(this.reservationValues.endTime.split(":")[0]) && parseInt(value.split(":")[1]) < parseInt(this.reservationValues.endTime.split(":")[1])) this.reservationValues.beginTime = value;
+                            else {
+                                this.reservationValues.beginTime = "";
+                                alert("You can't set a begintime that is later then the end-time.");
+                                document.getElementsByClassName("time-selector__input")[0].value = "";
+                            }
+                        }
                     break;
 
                     case "end":
-                        this.reservationValues.endTime = value;
-                    break;
+                        // Check if endtime does not come before begintime
+                        if (this.reservationValues.beginTime === "" || parseInt(value.split(":")[0]) > parseInt(this.reservationValues.beginTime.split(":")[0])) this.reservationValues.endTime = value;
+                        else {
+                             if (parseInt(value.split(":")[0]) == parseInt(this.reservationValues.beginTime.split(":")[0]) && parseInt(value.split(":")[1]) > parseInt(this.reservationValues.beginTime.split(":")[1])) this.reservationValues.endTime = value;
+                             else {
+                                 this.reservationValues.endTime = "";
+                                alert("You can't set a endtime that is earlier then the begin-time.");
+                                document.getElementsByClassName("time-selector__input")[1].value = "";
+                             }
+                        }
+                    break; 
                 }
             },
             searchAvailable(response, values) {
@@ -136,38 +154,65 @@
                 } else window.localStorage.setItem("search-history", JSON.stringify([values]));
             },
             reservate(roomId) {
-                axios.get(this.getReservationsUrl).then((response) => {
-                    const wishedBeginHour = parseInt(this.reservationValues.beginTime.split(":")[0]);
-                    const wishedEndHour = parseInt(this.reservationValues.endTime.split(":")[0]);
+                if (this.reservationValues.date == "") alert("You have not selected a date yet")
+                else {
+                    if (this.reservationValues.beginTime == "" || this.reservationValues.endTime == "") alert("You have not select an end- and/or a begintime of your reservation.");
+                    else axios.get(this.getReservationsUrl).then((response) => {
+                        let reservateable = true;
+                        const wishedBeginHour = parseInt(this.reservationValues.beginTime.split(":")[0]);
+                        const wishedBeginMinute = parseInt(this.reservationValues.beginTime.split(":")[1]);
 
-                    let reservateable = true;
+                        const wishedEndHour = parseInt(this.reservationValues.endTime.split(":")[0]);
+                        const wishedEndMinute = parseInt(this.reservationValues.endTime.split(":")[1]);
 
-                    for (let index = 0; index < response.data.length; index++) {
-                        if (roomId == this.$parent.room.id) {
+                        for (let index = 0; index < response.data.length; index++) if (roomId == this.$parent.room.id) if (reservateable === true) {
                             const reservationPossibility = response.data[index];
                             if (reservationPossibility.room_id === this.$parent.room.id) {
-                                const plannedBeginHour = parseInt(reservationPossibility.reservation_start.split(' ')[1].split(":")[0]);
-                                const plannedEndHour = parseInt(reservationPossibility.reservation_end.split(' ')[1].split(":")[0]);
+                                if (this.reservationValues.date != reservationPossibility.reservation_start.split(' ')[0]) {
+                                    const plannedBeginHour = parseInt(reservationPossibility.reservation_start.split(' ')[1].split(":")[0]);
+                                    const plannedEndHour = parseInt(reservationPossibility.reservation_end.split(' ')[1].split(":")[0]);
+                                    const plannedBeginMinute = parseInt(reservationPossibility.reservation_start.split(' ')[1].split(":")[1]);
+                                    const plannedEndMinute = parseInt(reservationPossibility.reservation_end.split(' ')[1].split(":")[1]);
 
-                                if ((wishedBeginHour >= plannedBeginHour && wishedBeginHour <= plannedEndHour) || (wishedEndHour >= plannedBeginHour && wishedEndHour <= plannedEndHour)) {
-                                    reservateable = false;
+                                    // When you want a start or endtime that is between the planned begin or end time
+                                    if ((wishedBeginHour > plannedBeginHour && wishedBeginHour < plannedEndHour) || (wishedEndHour > plannedBeginHour && wishedEndHour < plannedEndHour)) {
+                                        reservateable = false;
+                                        alert(reservationPossibility.id + " There is already an reservation in this room from: " + reservationPossibility.reservation_start.split(' ')[1] + " until: " + reservationPossibility.reservation_end.split(' ')[1]);
+                                    }
+                                    // When you want a starttime that is near the end of an existing reservation
+                                    else if (wishedBeginHour == plannedEndHour) {
+                                        if (wishedBeginMinute > plannedEndMinute) {}
+                                        else {
+                                            reservateable = false;
+                                            alert(reservationPossibility.id + " There is already an reservation in this room from: " + reservationPossibility.reservation_start.split(' ')[1] + " until: " + reservationPossibility.reservation_end.split(' ')[1]);
+                                        }
+                                    } 
+                                    // When you want a endtime that is near the start of an existing reservation
+                                    else if (wishedEndHour == plannedBeginHour) {
+                                        if (wishedEndMinute < plannedBeginMinute) {}
+                                        else {
+                                            reservateable = false;
+                                            alert(reservationPossibility.id + " There is already an reservation in this room from: " + reservationPossibility.reservation_start.split(' ')[1] + " until: " + reservationPossibility.reservation_end.split(' ')[1]);
+                                        }
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    if (reservateable === true) {
-                        axios.post(this.reservateUrl , {
-                            "room_id": roomId,
-                            "reservation_start": this.reservationValues.date + " " + this.reservationValues.beginTime + ":00",
-                            "reservation_end": this.reservationValues.date + " " + this.reservationValues.endTime + ":00"
-                        }).then((response) => {
-                            alert("Succesvol gereserveerd");
-                        }).catch((error) => console.log(error.message));
-                    } else {
-                        alert("Deze tijd is al bezet");
-                    }
-                }).catch((error) => console.error(error.message));
+                        if (reservateable === true) {
+                            let reservationEndTime = this.reservationValues.endTime;
+                            let minutes = parseInt(this.reservationValues.endTime.split(":")[1]);
+                            if (minutes == 0) parseInt(this.reservationValues.endTime.split(":")[0]) < 10 ? reservationEndTime = "0" + (parseInt(this.reservationValues.endTime.split(":")[0]) - 1) + ":59" : reservationEndTime = parseInt(this.reservationValues.endTime.split(":")[0]) - 1 + ":59";
+                            else reservationEndTime = this.reservationValues.endTime.split(":")[0] + ":" + (parseInt(this.reservationValues.endTime.split(":")[1]) - 1);
+
+                            axios.post(this.reservateUrl , {
+                                "room_id": roomId,
+                                "reservation_start": this.reservationValues.date + " " + this.reservationValues.beginTime + ":00",
+                                "reservation_end": this.reservationValues.date + " " + reservationEndTime + ":00"
+                            }).then((response) => alert("Reservated succesfully")).catch((error) => console.log(error.message));
+                        }
+                    }).catch((error) => console.error(error.message));
+                }
             }
         }
     }
