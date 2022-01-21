@@ -59,13 +59,13 @@
                             <div class="form__checkbox-wrapper flex">
                                 <input type="checkbox" id="register-location-updates" >
                                 <div class="form__checkbox flex"></div>
-                                <label for="register-location-updates" class="form__checkbox-label">I would like to receive <a href="../location-updates.html" target="_blank">location updates</a>.</label>
+                                <label for="register-location-updates" class="form__checkbox-label">I would like to receive <a href="{{ url("location-updates") }}" target="_blank">location updates</a>.</label>
                             </div>
 
                             <div class="form__checkbox-wrapper flex">
                                 <input type="checkbox" id="register-service-details" name="service-conditions" {{ old('service-conditions') ? 'checked' : ''}}>
                                 <div class="form__checkbox flex"></div>
-                                <label for="register-service-details" class="form__checkbox-label">I agree with the <a href="../service-details.html" target="_blank">service conditions</a>.</label>
+                                <label for="register-service-details" class="form__checkbox-label">I agree with the <a href="{{ url("service-details") }}" target="_blank">service conditions</a>.</label>
 
                                 @error('service-conditions')
                                 <span class="invalid-feedback" role="alert">

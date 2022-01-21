@@ -13,8 +13,8 @@
                 {{ csrf_field() }}
 
                 <div class="form__input-wrapper form__input-wrapper--half">
-                    <span class="form__label">Volledige naam</span>
-                    <input type="text" class="form__input" name="name" placeholder="Volledige naam" required>
+                    <span class="form__label">Full name</span>
+                    <input type="text" class="form__input" name="name" placeholder="Full name" required>
                 </div>
     
                 <div class="form__input-wrapper form__input-wrapper--half">
@@ -23,13 +23,13 @@
                 </div>
     
                 <div class="form__input-wrapper">
-                    <span class="form__label">Onderwerp</span>
-                    <input type="text" class="form__input" name="subject" placeholder="Reden tot contact" required>
+                    <span class="form__label">Subject</span>
+                    <input type="text" class="form__input" name="subject" placeholder="Reason for contact" required>
                 </div>
     
                 <div class="form__input-wrapper">
-                    <span class="form__label">Bericht</span>
-                    <textarea class="form__input" name="message" placeholder="Bericht..." required></textarea>
+                    <span class="form__label">Message</span>
+                    <textarea class="form__input" name="message" placeholder="Message..." required></textarea>
                 </div>
 
                 <div class="form__input-wrapper">

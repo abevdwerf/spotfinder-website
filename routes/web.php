@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 
     Auth::Routes();
 
+    Route::get('location-updates', function () { return View("location-updates", ["page" => "Location updates"]); });
+    Route::get('service-details', function () { return View("service-details", ["page" => "Service details"]); });
+
     Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
     Route::get("/", function () {

@@ -70,7 +70,7 @@
                 this.toggle();
                 this.$refs.input.value = this.day + ' ' + this.months[this.month] + ' ' + this.year;
                 const month = this.month + 1;
-                this.$emit('value', this.year + '-' + (this.month < 10 ? this.month = '0' + month : month) + (this.day < 10 ? this.day = '0' + this.day : this.day));
+                this.$emit('value', this.year + '-' + (this.month < 10 ? this.month = '0' + month : month) + '-' + (this.day < 10 ? this.day = '0' + this.day : this.day));
             }
         },
         mounted () {

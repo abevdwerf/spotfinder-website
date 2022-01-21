@@ -136,45 +136,38 @@
                 } else window.localStorage.setItem("search-history", JSON.stringify([values]));
             },
             reservate(roomId) {
-                // axios.get(this.getReservationsUrl).then((response) => {
-                //     const wishedBeginHour = this.reservationValues.beginTime.split(":")[0];
-                //     const wishedBeginMinute = this.reservationValues.beginTime.split(":")[1];
-                //     const wishedEndHour = this.reservationValues.endTime.split(":")[0];
-                //     const wishedEndMinute = this.reservationValues.endTime.split(":")[1];
+                axios.get(this.getReservationsUrl).then((response) => {
+                    const wishedBeginHour = parseInt(this.reservationValues.beginTime.split(":")[0]);
+                    const wishedEndHour = parseInt(this.reservationValues.endTime.split(":")[0]);
 
-                //     for (let index = 0; index < response.data.length; index++) {
-                //         if (roomId == this.$parent.room.id) {
-                //             const reservationPossibility = response.data[index];
-                //             if (reservationPossibility.room_id === this.$parent.room.id) {
-                //                 const plannedBeginHour = reservationPossibility.reservation_start.split(' ')[1].split(":")[0];
-                //                 const plannedBeginMinute = reservationPossibility.reservation_start.split(' ')[1].split(":")[1];
-                //                 const plannedEndHour = reservationPossibility.reservation_end.split(' ')[1].split(":")[0];
-                //                 const plannedEndMinute = reservationPossibility.reservation_end.split(' ')[1].split(":")[1];
+                    let reservateable = true;
 
-                //                 if ((wishedBeginHour >= plannedBeginHour && wishedBeginHour <= plannedEndHour) || (wishedEndHour >= plannedBeginHour && wishedEndHour <= plannedEndHour)) {
-                //                     alert("Tijd is al bezet");
-                //                 } else {
-                                    
-                //                 }
-                //             }
-                //         }
-                //     }
-                // }).catch((error) => console.error(error.message));
+                    for (let index = 0; index < response.data.length; index++) {
+                        if (roomId == this.$parent.room.id) {
+                            const reservationPossibility = response.data[index];
+                            if (reservationPossibility.room_id === this.$parent.room.id) {
+                                const plannedBeginHour = parseInt(reservationPossibility.reservation_start.split(' ')[1].split(":")[0]);
+                                const plannedEndHour = parseInt(reservationPossibility.reservation_end.split(' ')[1].split(":")[0]);
 
-                console.log({
-                    "room_id": roomId,
-                    "reservation_start": this.reservationValues.date + " " + this.reservationValues.beginTime + ":00",
-                    "reservation_end": this.reservationValues.date + " " + this.reservationValues.endTime + ":00"
-                });
+                                if ((wishedBeginHour >= plannedBeginHour && wishedBeginHour <= plannedEndHour) || (wishedEndHour >= plannedBeginHour && wishedEndHour <= plannedEndHour)) {
+                                    reservateable = false;
+                                }
+                            }
+                        }
+                    }
 
-                // axios.post(this.reservateUrl , {
-                //     "room_id": roomId,
-                //     "reservation_start": this.reservationValues.date + " " + this.reservationValues.beginTime + ":00",
-                //     "reservation_end": this.reservationValues.date + " " + this.reservationValues.endTime + ":00"
-                // }).then((response) => {
-                //     console.log(response);
-                //     alert("Succesvol gereserveerd");
-                // }).catch((error) => console.log(error.message));
+                    if (reservateable === true) {
+                        axios.post(this.reservateUrl , {
+                            "room_id": roomId,
+                            "reservation_start": this.reservationValues.date + " " + this.reservationValues.beginTime + ":00",
+                            "reservation_end": this.reservationValues.date + " " + this.reservationValues.endTime + ":00"
+                        }).then((response) => {
+                            alert("Succesvol gereserveerd");
+                        }).catch((error) => console.log(error.message));
+                    } else {
+                        alert("Deze tijd is al bezet");
+                    }
+                }).catch((error) => console.error(error.message));
             }
         }
     }
