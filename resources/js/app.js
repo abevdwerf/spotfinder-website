@@ -3,6 +3,7 @@ import Vue from 'vue';
 // Custom vue components
 import Finder from './components/finder.vue';
 import Dropdown from './components/dropdown.vue';
+import RewriteUrl from './components/rewrite-url.vue';
 import canvasGrid from './components/canvas-grid.vue';
 import checkButton from './components/check-button.vue';
 import finderHistory from './components/finder-history.vue';
@@ -10,6 +11,7 @@ import numberSelector from './components/number-selector.vue';
 
 Vue.component('finder', Finder);
 Vue.component('dropdown', Dropdown);
+Vue.component('rewrite-url', RewriteUrl);
 Vue.component('canvas-grid', canvasGrid);
 Vue.component('check-button', checkButton);
 Vue.component('finder-history', finderHistory);
