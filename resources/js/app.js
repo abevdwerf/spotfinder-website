@@ -8,6 +8,7 @@ import canvasGrid from './components/canvas-grid.vue';
 import checkButton from './components/check-button.vue';
 import finderHistory from './components/finder-history.vue';
 import numberSelector from './components/number-selector.vue';
+import axios from 'axios';
 
 Vue.component('finder', Finder);
 Vue.component('dropdown', Dropdown);
@@ -48,7 +49,13 @@ new Vue({
     },
     watch: {
         room(value) {
-            this.$nextTick(() => this.$refs.canvas.initCanvas(value.grid_location, this.rooms));
+            this.$nextTick(function () {
+                axios.get('getRoomsFromFloor', { params: {
+                    floorId: this.room.floor_id
+                } })
+                .then((response) => this.$refs.canvas.initCanvas(value.grid_location, response.data))
+                .catch((error) => { console.error(error.message) });
+            });
         }
     }
 });

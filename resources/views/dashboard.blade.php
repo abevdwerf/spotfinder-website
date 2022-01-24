@@ -74,7 +74,7 @@
                     <h3 class="h3" style="margin-top: 3rem;">Your reservations</h3>
                     <div class="reservations flex">
                         @foreach ($reservations as $reservation)
-                            <a class="reservation__item box" v-on:click.prevent=""> {{-- href="{{url('reservate').'/'.$reservation->id}}" --}}
+                            <div class="reservation__item box">
                                 <span class="reservation__location">{{$reservation->room->floor->location->location_name}}</span>
                                 <div class="flex" style="justify-content: flex-start;">
                                     <h4 class="h4">{{$reservation->room->room_name}}</h4>
@@ -95,7 +95,7 @@
 
                                     <span>{{$reservation->reservationStartAndBeginTime()}}</span>
                                 </span>
-                            </a>
+                            </div>
                         @endforeach
                     </div>
                 @endif
