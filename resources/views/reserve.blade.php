@@ -104,14 +104,13 @@
             </div>
         </div>
 
-        <div class="tab__item tab__item--hide" data-reservations>
-
-            @if(count($reservations) > 0)
+        @if(count($reservations) > 0)
+            <div class="tab__item tab__item--hide" data-reservations>
                 <h3 class="h3" style="margin-top: 3rem;">Your reservations</h3>
 
                 <div class="reservations flex">
                     @foreach ($reservations as $reservation)
-                        <a href="{{url('reservate').'/'.$reservation->id}}" class="reservation__item box">
+                        <div class="reservation__item box">
                             <span class="reservation__location">{{$reservation->room->floor->location->location_name}}</span>
                             <div class="flex" style="justify-content: flex-start;">
                                 <h4 class="h4">{{$reservation->room->room_name}}</h4>
@@ -130,12 +129,12 @@
                                     <path d="M11.375,3.375a8,8,0,1,0,8,8A8,8,0,0,0,11.375,3.375Zm.538,8.692a.54.54,0,0,1-.538.538H7.683a.538.538,0,0,1,0-1.077h3.154V6.452a.538.538,0,0,1,1.077,0Z" transform="translate(-3.375 -3.375)" />
                                 </svg>
     
-                                <span>{{$reservation->reservationStartAndBeginTime()}}</span>
+                                <span>{{ $reservation->showDate() }}: <b>{{ $reservation->reservationStartAndBeginTime() }}</b></span>
                             </span>
-                        </a>
+                        </div>
                     @endforeach
                 </div>
-            @endif
-        </div>
+            </div>
+        @endif
     </main>
 @endsection
