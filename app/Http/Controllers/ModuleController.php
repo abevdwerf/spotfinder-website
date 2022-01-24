@@ -84,14 +84,14 @@ class ModuleController extends Controller
         $module = Module::find($id);
         $module->update($request->all());
 
-        $sensors = Sensor::where('module_id' == $module->id)->all();
+        $sensors = Sensor::where('module_id', '=', $module->id)->get();
         $countSensors = count($sensors);
 
         if ($countSensors > 0)
         {
             if ($module->Desk->available_spaces != $countSensors)
             {
-                $sensors->delete();
+                Sensor::where('module_id', '=', $module->id)->delete();
 
                 for ($i=0; $i < $module->Desk->available_spaces; $i++)
                 {

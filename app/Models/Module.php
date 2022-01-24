@@ -13,4 +13,9 @@ class Module extends Model
         'desk_id',
         'module_name'
     ];
+
+    public function Desk()
+    {
+        return $this->hasone(Desk::class, 'id', 'desk_id');
+    }
 }
