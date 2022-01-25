@@ -13,7 +13,7 @@ class LocationController extends Controller
     }
 
     public function getLocation ($id) {
-        return Location::where('id', $id)->get()[0]->location_name;;
+        return Location::where('id', $id)->get()[0]->location_name;
     }
 
     public function create()

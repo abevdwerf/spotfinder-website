@@ -126,7 +126,7 @@
                     <a href="#" class="rooms__item rooms__item--extended box flex" v-for="room in rooms" :key="room.id" v-on:click.prevent="roomToggle($event, room)">
                         <div class="flex">
                             <div class="rooms__content">
-                                <span class="rooms__floor">Ground floor</span>
+                                <span class="rooms__floor">[[ room.floor_name ]]</span>
                                 <h4 class="h4">[[ room.room_name ]]</h4>
                             </div>
                 

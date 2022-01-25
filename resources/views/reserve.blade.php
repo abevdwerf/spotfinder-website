@@ -82,7 +82,7 @@
                         <h3 class="h3">Reservable workspaces</h3>
         
                         <a href="#" class="rooms__item box flex" v-for="room in rooms" :key="room.id" v-on:click.prevent="roomToggle($event, room)">
-                            <span class="rooms__floor">Ground floor</span>
+                            <span class="rooms__floor">[[ room.floor_name ]]</span>
                             <h4 class="h4">Oil [[ room.room_name ]]</h4>
                         </a>
                     </div>

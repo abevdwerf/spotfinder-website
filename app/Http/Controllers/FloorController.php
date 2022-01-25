@@ -17,6 +17,10 @@ class FloorController extends Controller
         return Floor::all();
     }
 
+    public function getFloorName (Request $request) {
+        return Floor::where('id', $request->get('floorId'))->get('floor_name');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

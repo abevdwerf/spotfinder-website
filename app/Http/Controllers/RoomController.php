@@ -13,7 +13,7 @@ class RoomController extends Controller
     }
 
     public function getAll(Request $request) {
-        return json_encode(Room::join('floors', 'rooms.floor_id', '=', 'floors.id')->select('rooms.*')->get());
+        return json_encode(Room::join('floors', 'rooms.floor_id', '=', 'floors.id')->select('rooms.*', 'floors.location_id', 'floors.floor_name')->get());
     }
 
     public function getAllFromFloor (Request $request) {
