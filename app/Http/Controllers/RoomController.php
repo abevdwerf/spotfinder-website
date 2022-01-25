@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
 {
@@ -28,7 +29,8 @@ class RoomController extends Controller
             2 => $request->get("typeDesk")  === 'true' ? '2' : false,
             3 => $request->get("typeMeeting")  === 'true' ? '3' : false
         );
-        return json_encode(Room::join('floors', 'rooms.floor_id', '=', 'floors.id')->where('floors.location_Id', $locationId)->whereIn('room_type_id', $filters)->select('rooms.*', 'floors.location_id', 'floors.floor_name')->get());
+        return json_encode(Room::leftJoin('floors', 'rooms.floor_id', '=', 'floors.id')->leftJoin('desks', 'rooms.id', '=', 'desks.room_id')->leftJoin('modules', 'desks.id', '=', 'modules.desk_id')->leftJoin('sensors', 'modules.id', '=', 'sensors.module_id')->where('floors.location_Id', $locationId)->whereIn('room_type_id', $filters)->select('rooms.*', 'floors.location_id', 'floors.floor_name', DB::raw("SUM(sensors.occupied) AS `occupied`"))->groupBy('rooms.id')->get());
+        // return json_encode(Room::join('floors', 'rooms.floor_id', '=', 'floors.id')->join('desks', 'rooms.id', '=', 'desks.room_id')->join('modules', 'desks.id', '=', 'modules.desk_id')->join('sensors', 'modules.id', '=', 'sensors.module_id')->where('floors.location_Id', $locationId)->whereIn('room_type_id', $filters)->select('rooms.*', 'floors.location_id', 'floors.floor_name')->groupBy('rooms.id')->get());
     }
 
     public function create()

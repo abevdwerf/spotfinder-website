@@ -132,7 +132,7 @@
                 
                             <p class="rooms__spots flex">
                                 <span>
-                                    <span class="rooms__highlight">4</span>/ [[ room.max_persons ]]
+                                    <span class="rooms__highlight">[[ room.occupied != null ? room.max_persons - room.occupied : room.max_persons ]]</span>/ [[ room.max_persons ]]
                                 </span>
                 
                                 <span>Spots</span>
